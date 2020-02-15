@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_tab"
+        android:title="الصفحة الرئيسية"
+        android:icon="@drawable/homeicon"/>
+
+    <item
+        android:id="@+id/profile_tab"
+        android:title="الملف الشخصي"
+        android:icon="@drawable/usricon"/>
+
+    <item
+        android:id="@+id/Noti_tab"
+        android:title="الإشعارات"
+        android:icon="@drawable/noticon"/>
+
+
+
+</menu>

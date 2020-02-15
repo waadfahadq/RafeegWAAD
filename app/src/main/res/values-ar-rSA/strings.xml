@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="Forget_q">نسيت كلمة المرور ؟</string>
+    <string name="LOGIN_btn">تسجيل الدخول</string>
+    <string name="LoginPass">"كلمة المرور "</string>
+    <string name="LoginUsername">اسم المستخدم</string>
+    <string name="guest">"تسجيل الدخول كزائر "</string>
+    <string name="register">تسجيل حساب جديد</string>
+</resources>
