@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private VectorMasterView heartVector;
     private VectorMasterView heartVector1;
     private VectorMasterView heartVector2;
-    private float mYVal;
+    private float mY;
     private RelativeLayout mlinId;
     PathModel outline;
 
