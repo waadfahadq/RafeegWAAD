@@ -91,6 +91,7 @@ public class HomeFragment extends Fragment {
         secList.add(new section(covers[2],("المقاهي")));
         secList.add(new section(covers[3],("المرافق")));
 
+
         adapter.notifyDataSetChanged();
 
 

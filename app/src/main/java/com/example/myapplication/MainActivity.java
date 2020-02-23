@@ -46,21 +46,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mView.inflateMenu(R.menu.menu_bottom);
         mView.setSelectedItemId(R.id.home_tab);
 
-        //getting bottom navigation view and attaching the listener
-        //BottomNavigationView navigation = findViewById(R.id.customBottomBar);
+
         mView.setOnNavigationItemSelectedListener(MainActivity.this);
 
 
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-
-        //BottomNavigationView navView = findViewById(R.id.customBottomBar);
 
 
-       // NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-       // NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-       // NavigationUI.setupWithNavController(mView, navController);
+
 
 
 
@@ -77,9 +69,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector1.setVisibility(View.GONE);
                 heartVector2.setVisibility(View.GONE);
                 selectAnimation(heartVector);
-
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ProfileFragment()).commit();
                 break;
+
+
             case R.id.home_tab:
                 tet(2);
                 mlinId.setX(mView.mFirstCurveControlPoint1.x );
@@ -87,8 +80,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector1.setVisibility(View.VISIBLE);
                 heartVector2.setVisibility(View.GONE);
                 selectAnimation(heartVector1);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
 
                 break;
+
+
+
             case R.id.Noti_tab:
                 tet();
                 mlinId.setX(mView.mFirstCurveControlPoint1.x ) ;
@@ -96,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector1.setVisibility(View.GONE);
                 heartVector2.setVisibility(View.VISIBLE);
                 selectAnimation(heartVector2);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new NotificationsFragment()).commit();
 
                 break;
         }
