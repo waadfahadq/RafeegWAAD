@@ -50,7 +50,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mView.setOnNavigationItemSelectedListener(MainActivity.this);
 
 
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
+        }
 
 
 
