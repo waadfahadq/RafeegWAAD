@@ -17,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.ui.ProfileFragment.ProfileFragment;
+import com.example.myapplication.ui.dashboard.DashboardFragment;
 import com.example.myapplication.ui.home.HomeFragment;
 import com.example.myapplication.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector1.setVisibility(View.GONE);
                 heartVector2.setVisibility(View.GONE);
                 selectAnimation(heartVector);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DashboardFragment()).commit();
                 break;
 
 

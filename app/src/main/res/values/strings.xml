@@ -13,4 +13,5 @@
     <string name="register2">Register</string>
     <string name="EnterEmail">Enter email</string>
     <string name="Signup">Sign up</string>
+    <string name="menu_delete">Delete</string>
 </resources>
