@@ -56,4 +56,6 @@ dependencies {
 
     implementation 'com.sdsmdg.harjot:vectormaster:1.0.9'
 
+    implementation 'com.github.AppIntro:AppIntro:5.1.0'
+
 }
