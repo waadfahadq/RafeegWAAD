@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView createACC;
     TextView forgetPass;
     static String EMAILP ;
+    int x;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 

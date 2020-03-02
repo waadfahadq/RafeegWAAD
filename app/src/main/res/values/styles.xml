@@ -25,4 +25,6 @@
         <item name="background">@color/colorPrimaryDark</item>
         <item name="height">?attr/actionBarSize</item>
     </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
 </resources>

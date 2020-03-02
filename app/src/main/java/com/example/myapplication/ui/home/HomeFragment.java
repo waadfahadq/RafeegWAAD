@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -80,9 +80,9 @@ public class HomeFragment extends Fragment {
     private void prepareDepartment() {
         int[] covers = new int[]{
                 R.drawable.mall
-                ,R.drawable.meal
-                ,R.drawable.coffee
-                ,R.drawable.pathroom
+                , R.drawable.meal
+                , R.drawable.coffee
+                , R.drawable.pathroom
         };
 
 
