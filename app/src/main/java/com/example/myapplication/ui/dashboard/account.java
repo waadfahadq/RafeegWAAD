@@ -35,9 +35,9 @@ public class account extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setHasOptionsMenu(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("الملف الشخصي");
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        setHasOptionsMenu(true);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("الملف الشخصي");
         b1 = rootView.findViewById(R.id.button);
         b2 = rootView.findViewById(R.id.button2);
         em = rootView.findViewById(R.id.email_edit_text);
@@ -53,25 +53,25 @@ public class account extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("حسابي");
+//                ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("حسابي");
                 getActivity().onBackPressed();
             }
         });
         return rootView;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home :
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("حسابي");
-                getActivity().onBackPressed();
-                break;
-            default :
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home :
+//                ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("حسابي");
+//                getActivity().onBackPressed();
+//                break;
+//            default :
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }

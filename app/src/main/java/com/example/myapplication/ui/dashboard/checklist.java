@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -24,18 +25,26 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.*;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import it.sephiroth.android.library.numberpicker.NumberPicker;
 import timber.log.Timber;
@@ -43,13 +52,16 @@ import static android.view.View.resolveSizeAndState;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class checklist extends Fragment implements AdapterView.OnItemClickListener {
-    List<checklistModel> checklists;
+    ArrayList<checklistModel> checklists;
     ListView listViewPosts;
     private FloatingActionButton f1;
     CheckBox mCheckBox;
+    checklistModel model;
     checklistAdapter adapter;
     private ActionMode mActionMode;
-
+    View rootView;
+    private DatabaseReference mDatabase;
+// ...
     public checklist() {
 
     }
@@ -58,19 +70,30 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         checklists = new ArrayList<>();
-        View rootView = inflater.inflate(R.layout.checklist_activity, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setHasOptionsMenu(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("قائمة التسوق");
+         rootView = inflater.inflate(R.layout.checklist_activity, container, false);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        setHasOptionsMenu(true);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("قائمة التسوق");
         listViewPosts = (ListView) rootView.findViewById(R.id.listViewPosts);
         adapter= new checklistAdapter(getContext(),checklists );
         listViewPosts.setAdapter(adapter);
         listViewPosts.setOnItemClickListener(this);
-        listViewPosts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewPosts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                onListItemSelect(i);
-                return true;
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onListItemSelect(position);
+            }
+        });
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase.child("checkList").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                checklist.this.onDataChange(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
         f1 = (FloatingActionButton) rootView.findViewById(R.id.floatingActionButton);
@@ -87,9 +110,16 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                         // send data from the AlertDialog to the Activity
                         EditText name = customLayout.findViewById(R.id.editText);
                         NumberPicker n1 = customLayout.findViewById(R.id.numberPicker);
-                        checklistModel model = new checklistModel(name.getText().toString(),String.valueOf(n1.getProgress()));
-                        checklists.add(model);
-                        adapter.notifyDataSetChanged();
+                        model = new checklistModel(name.getText().toString(),String.valueOf(n1.getProgress()),false,"");
+                        mDatabase.child("checkList").child(user.getUid()).push().setValue(model,new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError,
+                                                   DatabaseReference databaseReference) {
+                                String uniqueKey = databaseReference.getKey();
+                                mDatabase.child("checkList").child(user.getUid()).child(uniqueKey).child("key").setValue(uniqueKey);
+                                model.setKey(uniqueKey);
+                            }
+                        });
                         Log.e("chosen quantity",String.valueOf(n1.getProgress()));
                     }
                 });
@@ -107,17 +137,28 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
 
         return rootView;
     }
+    public void onDataChange(DataSnapshot dataSnapshot)
+    {
+        checklists.clear();
+        for(DataSnapshot children: dataSnapshot.getChildren()){
+            checklistModel modelClass=children.getValue(checklistModel.class);
+            checklists.add(modelClass);
+        }
+        Collections.reverse(checklists);
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view,
                             int position, long id) {
         if (mActionMode == null) {
             /*no items selected, so perform item click actions
              * like moving to next activity */
-            Toast toast = Toast.makeText(getContext(), "Item "
-                            + (position + 1) + ": " + checklists.get(position),
-                    Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
+//            Toast toast = Toast.makeText(getContext(), "Item "
+//                            + (position + 1) + ": " + checklists.get(position),
+//                    Toast.LENGTH_SHORT);
+//            toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+//            toast.show();
 
         } else
             // add or remove selection for current list item
@@ -173,6 +214,20 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        listViewPosts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                CheckBox checkBox = view.findViewById(R.id.checkBox);
+//                checkBox.setVisibility(View.INVISIBLE);
+                onListItemSelect(i);
+                return true;
+            }
+        });
+    }
+
     private class ActionModeCallback implements ActionMode.Callback {
 
         @Override
@@ -189,7 +244,8 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
 
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-
+            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            mDatabase = FirebaseDatabase.getInstance().getReference();
             switch (item.getItemId()) {
                 case R.id.menu_delete:
                     // retrieve selected items and delete them out
@@ -199,6 +255,9 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                         if (selected.valueAt(i)) {
                             checklistModel selectedItem = adapter
                                     .getItem(selected.keyAt(i));
+                            Log.e("i",String.valueOf(i));
+                            Log.e("Item to be deleted",selectedItem.getKey());
+                            mDatabase.child("checkList").child(user.getUid()).child(selectedItem.getKey()).removeValue();
                             adapter.remove(selectedItem);
                         }
                     }

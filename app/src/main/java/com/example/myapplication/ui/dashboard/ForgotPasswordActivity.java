@@ -34,7 +34,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_activity);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
+         user = FirebaseAuth.getInstance().getCurrentUser();
         email = (EditText) findViewById(R.id.email_edt_text);
         email.setText(user.getEmail());
         oPass = (EditText) findViewById(R.id.passwordUP_edt_text);
