@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // set dialog message
                 alertDialogBuilder
                         .setCancelable(false)
-                        .setPositiveButton("Send",
+                        .setPositiveButton("إرسال",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
 
@@ -106,34 +106,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                             startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                                                         }
                                                         else {
-                                                            userInput.setError("Error With This Password  ");
+                                                            userInput.setError("كلمة المرور خاطئة !");
                                                             userInput.requestFocus();
                                                         }
                                                     }
                                                 });
                                             }}//if
 
-                                        else if(string != null) {
-                                            firebaseAuth.sendPasswordResetEmail(userInput.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()){
-                                                        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-                                                    }
-                                                    else {
-                                                        userInput.setError("Error With This Password  ");
-                                                        userInput.requestFocus();
-                                                    }
-                                                }
-                                            });
-                                        }
+
                                         else {
-                                            userInput.setError("Please enter The Email Address !!");
+                                            userInput.setError("فضلًا أدخل بريدك الإلكتروني");
                                             userInput.requestFocus();
                                         }
 
                                     }
-                                }).setNegativeButton("Cencel",null);
+                                }).setNegativeButton("إلغاء",null);
 
 
 
@@ -185,7 +172,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         finish();
                                     } else {
 
-                                        Toast.makeText(LoginActivity.this, " Email or password wrong", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this, " كلمة المرور أو البريد الإلكتروني غير صحيح !", Toast.LENGTH_LONG).show();
 
                                     }
                                 } });
@@ -198,7 +185,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 else {
 
-                    Toast.makeText(this, " Email or password wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, " كلمة المرور أو البريد الإلكتروني غير صحيح !", Toast.LENGTH_LONG).show();
                 }//close else
                 break;
 
@@ -233,19 +220,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if (isEmpty(Password)) {
-            Password.setError("password is required!");
+            Password.setError("فضلًا ادخل كلمة المرور");
             return false;
 
         }
 
         if (isEmpty(UserName)) {
-            UserName.setError("Email is required!");
+            UserName.setError("فضلًا ادخل البريد الإلكتروني");
             return false;
 
         }
 
         if (!isEmail(UserName)) {
-            UserName.setError("Enter valid email!");
+            UserName.setError("فضلًا ادخل بريد إلكتروني صحيح !");
             return false;
 
         }

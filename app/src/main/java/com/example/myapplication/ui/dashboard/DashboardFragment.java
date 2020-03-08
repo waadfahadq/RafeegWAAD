@@ -41,6 +41,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private DashboardViewModel dashboardViewModel;
     private TextView t1;
     FirebaseDatabase database;
+    FirebaseAuth firebaseAuth;
     DatabaseReference reference;
     private ImageView logout;
 
@@ -52,6 +53,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         View root = inflater.inflate(R.layout.fragment__dashboard, container, false);
 
         logout = root.findViewById(R.id.logout);
+        logout.setOnClickListener(this);
 
 
 
@@ -113,9 +115,12 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
 
-
-
+        firebaseAuth.getInstance().signOut();
         startActivity(new Intent(this.getContext(), LoginActivity.class));
 
+
     }
+
+
+
 }

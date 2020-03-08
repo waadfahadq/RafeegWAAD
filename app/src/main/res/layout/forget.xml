@@ -6,13 +6,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:layout_gravity="right"
     android:padding="10dp" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Forget_q"
+        android:gravity="right"
+        android:layout_gravity="right"
+        android:text="نسيت كلمة المرور ؟"
         android:textStyle="bold"
         android:textColor="@color/colorAccent"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -21,7 +24,7 @@
         android:id="@+id/email2restpass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/EnterEmail">
+        android:hint="ادخلك بريدك الإلكتروني المسجل">
         <requestFocus />
 
     </EditText>

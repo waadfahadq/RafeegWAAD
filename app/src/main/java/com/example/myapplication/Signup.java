@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -64,7 +67,7 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        setTitle(R.string.register);
+        setTitle("إنشاء حساب");
 
         toolbar.setTitleTextColor(Color.WHITE);
 
@@ -121,13 +124,13 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
 
         if (isEmpty((EditText)Name )&&(isEmpty(password))
                 && (isEmpty(email))) {
-            Name.setError("You must enter name!");
-            password.setError("password is required!");
-            email.setError("Enter valid email!");
+            Name.setError("فضلًا ادخل إسم المستخدم");
+            password.setError("فضلًا ادخل كلمة المرور");
+            email.setError("فضلًا ادخل البريد الإلكتروني");
             return false;}
 
         if (isEmpty(Name)) {
-            Name.setError( "You must enter  name to register!");
+            Name.setError( "فضلًا ادخل إسم المستخدم");
             return false;
 
         }
@@ -135,20 +138,20 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
 
 
         if (isEmpty(password)) {
-            password.setError("password is required!");
+            password.setError("فضلًا ادخل كلمة المرور");
             return false;
 
         }
 
         if( password.getText().toString().length()<=6){
-            password.setError("Please Your Password Need to Contain 6 Charecters or More ");
+            password.setError("كلمة المرور يجب أن تحتوي على ٦ خانات على الأقل");
             return false;
         }
 
 
 
         if (isEmpty(email)) {
-            email.setError("email is required!");
+            email.setError("فضلًا ادخل البريد الإلكتروني");
             return false;
 
         }
@@ -156,7 +159,7 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
 
 
         if (!isEmail(email)||(!email.getText().toString().substring(email.getText().toString().indexOf(".")+1).equals("com"))){
-            email.setError("Enter valid email!");
+            email.setError("البريد الإلكتروني غير صحيح !");
             return false;
         }
 
@@ -168,7 +171,7 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
 
 
 
-        progressDialog.setMessage("waiting please...");
+        progressDialog.setMessage("فضلًا انتظر ...");
         progressDialog.show();
 
         f1.createUserWithEmailAndPassword(EMAIL,PASS)
@@ -188,14 +191,14 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
 
 
 
-                            Toast.makeText(Signup.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Signup.this, "تمت عملية التسجيل بنجاح !", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(Signup.this,MainActivity.class);
                             startActivity(intent);
                             finish();
                         }
                         else {
-                            Toast.makeText(Signup.this, "Couldnt register , please try again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Signup.this, "فشلت عملية التسجيل , حاول مرة أخرى !", Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -210,6 +213,16 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
     }
 
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+
+            onBackPressed();
+
+            // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
 
