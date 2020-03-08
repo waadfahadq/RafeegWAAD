@@ -1,8 +1,11 @@
 package com.example.myapplication.ui.dashboard;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Printer;
@@ -20,6 +23,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -28,10 +32,16 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.myapplication.*;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -43,6 +53,8 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -53,7 +65,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class checklist extends Fragment implements AdapterView.OnItemClickListener {
     ArrayList<checklistModel> checklists;
-    ListView listViewPosts;
+    SwipeMenuListView listViewPosts;
     private FloatingActionButton f1;
     CheckBox mCheckBox;
     checklistModel model;
@@ -61,6 +73,8 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
     private ActionMode mActionMode;
     View rootView;
     private DatabaseReference mDatabase;
+    private ConstraintLayout constraintLayout;
+
 // ...
     public checklist() {
 
@@ -74,7 +88,11 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        setHasOptionsMenu(true);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("قائمة التسوق");
-        listViewPosts = (ListView) rootView.findViewById(R.id.listViewPosts);
+
+
+
+        listViewPosts = (SwipeMenuListView) rootView.findViewById(R.id.listViewPosts);
+        constraintLayout = rootView.findViewById(R.id.card_view3);
         adapter= new checklistAdapter(getContext(),checklists );
         listViewPosts.setAdapter(adapter);
         listViewPosts.setOnItemClickListener(this);
@@ -135,8 +153,78 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
             }
         });
 
+
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(
+                        getContext());
+
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth((250));
+                // set a icon
+                deleteItem.setIcon(R.drawable.ic_delete);
+                // add to menu
+                menu.addMenuItem(deleteItem);
+            }
+        };
+
+// set creator
+        listViewPosts.setMenuCreator(creator);
+
+
+
+        listViewPosts.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+
+                // I added them Sunday morning
+                switch (index) {
+                    case 0:
+                        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        SparseBooleanArray selected = adapter
+                                .getSelectedIds();
+                        for (int i = (selected.size() - 1); i >= 0; i--) {
+                            if (selected.valueAt(i)) {
+                                checklistModel selectedItem = adapter
+                                        .getItem(selected.keyAt(i));
+                                Log.e("i", String.valueOf(i));
+                                Log.e("Item to be deleted", selectedItem.getKey());
+                                mDatabase.child("checkList").child(user.getUid()).child(selectedItem.getKey()).removeValue();
+                                adapter.remove(selectedItem);
+                            }
+                        }
+
+                            break;
+                        }
+
+
+
+
+
+
+                 return false;
+
+            }
+        });
+
+        listViewPosts.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
+
+
+        listViewPosts.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
         return rootView;
     }
+
+
     public void onDataChange(DataSnapshot dataSnapshot)
     {
         checklists.clear();
@@ -147,6 +235,9 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
         Collections.reverse(checklists);
         adapter.notifyDataSetChanged();
     }
+
+
+
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view,
@@ -275,6 +366,13 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
             adapter.removeSelection();
             mActionMode = null;
         }
+
+
+
+
+
     }
+
+
 
 }

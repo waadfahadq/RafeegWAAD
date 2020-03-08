@@ -1,6 +1,9 @@
 package com.example.myapplication.ui.dashboard;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.se.omapi.Session;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -17,6 +21,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,18 +35,27 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements View.OnClickListener {
     private GridView GridViewIT;
     private CustomAdapterDashboard itCustomAdapterCategory;
     private DashboardViewModel dashboardViewModel;
     private TextView t1;
     FirebaseDatabase database;
     DatabaseReference reference;
+    private ImageView logout;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment__dashboard, container, false);
+
+        logout = root.findViewById(R.id.logout);
+
+
+
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
         t1= (TextView) root.findViewById(R.id.textView);
@@ -92,5 +107,15 @@ public class DashboardFragment extends Fragment {
 
 
         return root;
+    }
+
+//not working yet
+    @Override
+    public void onClick(View v) {
+
+
+
+        startActivity(new Intent(this.getContext(), LoginActivity.class));
+
     }
 }

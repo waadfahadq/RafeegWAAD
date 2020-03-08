@@ -47,11 +47,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="175dp"
         android:layout_gravity="center_horizontal"
-        android:text="@string/Signup"
+        android:text="إنشاء حساب جديد"
         android:fontFamily="sans-serif-light"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:textSize="43dp"></TextView>
+        android:textSize="35dp"></TextView>
 
 
     <EditText
@@ -59,7 +59,7 @@
         android:layout_marginTop="140dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
-        android:hint="@string/LoginUsername"
+        android:hint="إسم المستخدم"
         android:fontFamily="sans-serif-light"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
@@ -70,7 +70,7 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
-        android:hint="@string/Email"
+        android:hint="البريد الإلكتروني"
         android:fontFamily="sans-serif-light"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
@@ -81,7 +81,7 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
-        android:hint="@string/LoginPass"
+        android:hint="كلمة المرور"
         android:fontFamily="sans-serif-light"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
@@ -95,7 +95,7 @@
         android:layout_marginTop="60dp"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"
-        android:text="@string/Signup"
+        android:text="تسجيل"
         android:textStyle="bold"
         android:fontFamily="sans-serif-light"
         android:textCursorDrawable="@android:color/white"

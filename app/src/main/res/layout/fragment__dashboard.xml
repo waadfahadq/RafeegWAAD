@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/profilebg">
+
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="right"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_power_settings_new_black_24dp"
+        tools:ignore="MissingConstraints" />
 
 <!--    <ScrollView-->
 <!--        android:layout_width="match_parent"-->
@@ -14,10 +25,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="450dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="200dp"
         android:background="@drawable/custome"
         android:elevation="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
 
             android:hint="Nada1760"
             android:textColor="@color/colorPrimary"
