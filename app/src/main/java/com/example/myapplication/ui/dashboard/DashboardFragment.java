@@ -23,6 +23,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.LoginActivity;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,17 +59,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+
         t1= (TextView) root.findViewById(R.id.textView);
-        reference.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                t1.setText(String.valueOf("Welcome "+dataSnapshot.getValue(String.class)+" !"));
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {            }
-        });
+        t1.setText(MainActivity.username);
+
         ArrayList<DashboardViewModel> Categories2 = new ArrayList<DashboardViewModel>();
         Categories2.add(new DashboardViewModel("الملف الشخصي",R.drawable.user2));
         Categories2.add(new DashboardViewModel("الفواتير",R.drawable.bill));

@@ -21,6 +21,13 @@ import com.example.myapplication.ui.dashboard.DashboardFragment;
 import com.example.myapplication.ui.home.HomeFragment;
 import com.example.myapplication.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
@@ -31,7 +38,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private VectorMasterView heartVector1;
     private VectorMasterView heartVector2;
     private float mY;
+    public static String username;
     private RelativeLayout mlinId;
+    FirebaseAuth firebaseAuth;
+    DatabaseReference reference;
     PathModel outline;
 
     @Override
@@ -46,7 +56,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mlinId = findViewById(R.id.lin_id);
         mView.inflateMenu(R.menu.menu_bottom);
         mView.setSelectedItemId(R.id.home_tab);
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+        reference.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                username = ("Welcome "+dataSnapshot.getValue(String.class)+" !");
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {            }
+        });
 
         mView.setOnNavigationItemSelectedListener(MainActivity.this);
 

@@ -9,7 +9,8 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="end"/>
 
     <TextView
         android:id="@+id/textView5"
@@ -22,6 +23,7 @@
         style="@style/NumberPicker.Filled"
         app:picker_max="100"
         app:picker_min="0"
+        android:layout_gravity="end"
         android:progress="1"
         app:picker_stepSize="1"
         app:picker_tracker="exponential"

@@ -18,21 +18,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.admin_portal.MainActivityAdmin;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    static String ID ;
-    final Context context = this ;
-    Button Login ;
-    static EditText UserName ;
-    EditText  Password;
+    static String ID;
+    final Context context = this;
+    Button Login;
+    static EditText UserName;
+    EditText Password;
     TextView createACC;
     TextView forgetPass;
-    static String EMAILP ;
+    static String EMAILP;
     int x;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -45,29 +46,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser() != null){
+        if (firebaseAuth.getCurrentUser() != null) {
 
             ID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            Intent intent =new Intent(getApplicationContext() , MainActivity.class );
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
 
 
-        Login= (Button)findViewById(R.id.login_btn);
-        UserName=(EditText)findViewById(R.id.username_login);
-        Password=(EditText)findViewById(R.id.password_login);
+        Login = (Button) findViewById(R.id.login_btn);
+        UserName = (EditText) findViewById(R.id.username_login);
+        Password = (EditText) findViewById(R.id.password_login);
         Login.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
-
 
 
         createACC = findViewById(R.id.createACC);
         createACC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,Signup.class);
+                Intent intent = new Intent(LoginActivity.this, Signup.class);
                 startActivity(intent);
 
             }
@@ -91,27 +91,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         .setCancelable(false)
                         .setPositiveButton("إرسال",
                                 new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
+                                    public void onClick(DialogInterface dialog, int id) {
 
                                         firebaseAuth = FirebaseAuth.getInstance();
 
-                                        String string =  userInput.getText().toString();
-                                        if(userInput == null){
+                                        String string = userInput.getText().toString();
+                                        if (userInput == null) {
 
-                                            if(string != null) {
+                                            if (string != null) {
                                                 firebaseAuth.sendPasswordResetEmail(userInput.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                        if(task.isSuccessful()){
-                                                            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-                                                        }
-                                                        else {
+                                                        if (task.isSuccessful()) {
+                                                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                                        } else {
                                                             userInput.setError("كلمة المرور خاطئة !");
                                                             userInput.requestFocus();
                                                         }
                                                     }
                                                 });
-                                            }}//if
+                                            }
+                                        }//if
 
 
                                         else {
@@ -120,9 +120,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         }
 
                                     }
-                                }).setNegativeButton("إلغاء",null);
-
-
+                                }).setNegativeButton("إلغاء", null);
 
 
                 // create alert dialog
@@ -136,12 +134,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }//end onCreate
 
 
-
     @Override
-    public void onClick(View view){
+    public void onClick(View view) {
 
 
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.login_btn:
 
 ////
@@ -149,97 +146,95 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String PASS = Password.getText().toString().trim();
 
 
-
-
-
                 boolean validate = checkDataEntered();
+                if (EMAIL.equalsIgnoreCase("admin") & PASS.equalsIgnoreCase("admin")) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivityAdmin.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    if (validate) {
+                        firebaseAuth.signInWithEmailAndPassword(EMAIL, PASS)
+                                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if(validate) {
-                    firebaseAuth.signInWithEmailAndPassword(EMAIL,PASS)
-                            .addOnCompleteListener(this,new OnCompleteListener<AuthResult>(){
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                    progressDialog.dismiss();
-                                    if (task.isSuccessful()) {
+                                        progressDialog.dismiss();
+                                        if (task.isSuccessful()) {
 
 
-                                        EMAILP = UserName.getText().toString();
-                                        ID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                        MySharedPreference.putString(LoginActivity.this , Constance.key.USER_EMAIL,EMAILP);
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
+                                            EMAILP = UserName.getText().toString();
+                                            ID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                            MySharedPreference.putString(LoginActivity.this, Constance.key.USER_EMAIL, EMAILP);
+                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
 
-                                        Toast.makeText(LoginActivity.this, " كلمة المرور أو البريد الإلكتروني غير صحيح !", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(LoginActivity.this, " كلمة المرور أو البريد الإلكتروني غير صحيح !", Toast.LENGTH_LONG).show();
 
+                                        }
                                     }
-                                } });
+                                });
 
-                    // showDialog();
+                        // showDialog();
 
-                    //finish();
+                        //finish();
 
-                }//close if
+                    }//close if
 
-                else {
+                    else {
 
-                    Toast.makeText(this, " كلمة المرور أو البريد الإلكتروني غير صحيح !", Toast.LENGTH_LONG).show();
-                }//close else
-                break;
-
-
+                        Toast.makeText(this, " كلمة المرور أو البريد الإلكتروني غير صحيح !", Toast.LENGTH_LONG).show();
+                    }//close else
+                    break;
 
 
-        }//end switch()
+                }//end switch()
 
-
-    }
-
-
-
-    public void onPause(){
-        super.onPause();
-        finish();
-    }
-
-
-
-    boolean isEmail(EditText text) {
-        CharSequence email = text.getText().toString();
-        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
-    }
-
-    boolean isEmpty(EditText text) {
-        CharSequence str = text.getText().toString();
-        return TextUtils.isEmpty(str);
-    }
-
-    boolean checkDataEntered() {
-
-
-        if (isEmpty(Password)) {
-            Password.setError("فضلًا ادخل كلمة المرور");
-            return false;
 
         }
+    }
 
-        if (isEmpty(UserName)) {
-            UserName.setError("فضلًا ادخل البريد الإلكتروني");
-            return false;
-
-        }
-
-        if (!isEmail(UserName)) {
-            UserName.setError("فضلًا ادخل بريد إلكتروني صحيح !");
-            return false;
-
+        public void onPause () {
+            super.onPause();
+            finish();
         }
 
 
-        return true;
+        boolean isEmail (EditText text){
+            CharSequence email = text.getText().toString();
+            return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        }
+
+        boolean isEmpty (EditText text){
+            CharSequence str = text.getText().toString();
+            return TextUtils.isEmpty(str);
+        }
+
+        boolean checkDataEntered () {
+
+
+            if (isEmpty(Password)) {
+                Password.setError("فضلًا ادخل كلمة المرور");
+                return false;
+
+            }
+
+            if (isEmpty(UserName)) {
+                UserName.setError("فضلًا ادخل البريد الإلكتروني");
+                return false;
+
+            }
+
+            if (!isEmail(UserName)) {
+                UserName.setError("فضلًا ادخل بريد إلكتروني صحيح !");
+                return false;
+
+            }
+
+
+            return true;
+        }
+
+
     }
-
-
-}

@@ -18,6 +18,7 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".Signup"></activity>
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".admin_portal.MainActivityAdmin"></activity>
         <activity android:name=".StorwsList"></activity>
         <activity android:name=".ui.dashboard.ForgotPasswordActivity"></activity>
     </application>
