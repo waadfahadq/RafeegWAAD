@@ -128,8 +128,11 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                         // send data from the AlertDialog to the Activity
                         EditText name = customLayout.findViewById(R.id.editText);
                         NumberPicker n1 = customLayout.findViewById(R.id.numberPicker);
-                        model = new checklistModel(name.getText().toString(),String.valueOf(n1.getProgress()),false,"");
-                        mDatabase.child("checkList").child(user.getUid()).push().setValue(model,new DatabaseReference.CompletionListener() {
+                        if (name.getText().toString() == "إسم المنتج") {
+                                name.setError("الرجاء إدخال اسم المنتج");
+                        } else{
+                        model = new checklistModel(name.getText().toString(), String.valueOf(n1.getProgress()), false, "");
+                        mDatabase.child("checkList").child(user.getUid()).push().setValue(model, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(DatabaseError databaseError,
                                                    DatabaseReference databaseReference) {
@@ -138,8 +141,9 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                                 model.setKey(uniqueKey);
                             }
                         });
-                        Log.e("chosen quantity",String.valueOf(n1.getProgress()));
+                        Log.e("chosen quantity", String.valueOf(n1.getProgress()));
                     }
+                }
                 });
                 alert.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
                     @Override
@@ -179,47 +183,18 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
 
 // set creator
         listViewPosts.setMenuCreator(creator);
-
-
-
         listViewPosts.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-
                 // I added them Sunday morning
-                switch (index) {
-                    case 0:
-                        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        mDatabase = FirebaseDatabase.getInstance().getReference();
-                        SparseBooleanArray selected = adapter
-                                .getSelectedIds();
-                        for (int i = (selected.size() - 1); i >= 0; i--) {
-                            if (selected.valueAt(i)) {
-                                checklistModel selectedItem = adapter
-                                        .getItem(selected.keyAt(i));
-                                Log.e("i", String.valueOf(i));
-                                Log.e("Item to be deleted", selectedItem.getKey());
+                //Edited by Nada, it's done now
+                checklistModel selectedItem = adapter
+                                        .getItem(position);
                                 mDatabase.child("checkList").child(user.getUid()).child(selectedItem.getKey()).removeValue();
                                 adapter.remove(selectedItem);
+                                return false;
                             }
-                        }
-
-                            break;
-                        }
-
-
-
-
-
-
-                 return false;
-
-            }
         });
-
-        listViewPosts.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
-
-
         listViewPosts.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
         return rootView;
     }
@@ -264,7 +239,6 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
         else if (!hasCheckedItems && mActionMode != null)
             // there no selected items, finish the actionMode
             mActionMode.finish();
-
         if (mActionMode != null)
             mActionMode.setTitle(String.valueOf(adapter
                     .getSelectedCount()) + " تم إختياره");
@@ -366,13 +340,12 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
             adapter.removeSelection();
             mActionMode = null;
         }
-
-
-
-
-
     }
 
-
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mActionMode != null){
+        mActionMode.finish();}
+    }
 }
