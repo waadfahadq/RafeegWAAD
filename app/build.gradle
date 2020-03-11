@@ -54,6 +54,7 @@ dependencies {
 
     implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 
+    implementation 'com.karumi:dexter:6.0.2'
 
     implementation 'com.sdsmdg.harjot:vectormaster:1.0.9'
 

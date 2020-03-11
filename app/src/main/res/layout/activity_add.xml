@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".admin_portal.ui.ProfileFragment.add">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar900"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+
+        tools:ignore="DuplicateIds,MissingConstraints">
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="65dp"
+
+            android:layout_marginRight="30dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="10dp"
+                        android:text="اسم المحل"
+
+                        android:textColor="@color/colorPrimary">
+
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/nameform"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="3dp"
+                        android:hint="اسم المحل"
+                        android:textSize="12dp"
+                        tools:ignore="InvalidImeActionId">
+
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/TV2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="4dp"
+
+                        android:text="رقم المحل"
+                        android:textColor="@color/colorPrimary"></TextView>
+
+                    <Spinner
+
+                        android:id="@+id/num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="3dp"
+
+
+                        tools:ignore="InvalidId">
+
+                    </Spinner>
+
+                    <TextView
+                        android:id="@+id/TV3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="4dp"
+                        android:text=" ايميل المالك"
+
+                        android:textColor="@color/colorPrimary"></TextView>
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="3dp"
+
+                        android:hint="ايميل المالك"
+                        android:textSize="12dp">
+
+
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/TV4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="4dp"
+                        android:text=" رقم البيكن"
+
+                        android:textColor="@color/colorPrimary"></TextView>
+
+                    <EditText
+                        android:id="@+id/baken"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+
+                        android:layout_marginTop="3dp"
+                        android:hint="رقم البيكن"
+                        android:textSize="12dp">
+
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/TV5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="4dp"
+                        android:text=" نوع المحل "
+
+                        android:textColor="@color/colorPrimary"
+                        tools:ignore="DuplicateIds"></TextView>
+
+                    <EditText
+                        android:id="@+id/type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="3dp"
+
+                        android:hint=" نوع المحل"
+                        android:textSize="12dp">
+
+                    </EditText>
+
+
+                    <TextView
+                        android:id="@+id/TV5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="4dp"
+                        android:text="  ارفق صورة "
+
+                        android:textColor="@color/colorPrimary"
+                        tools:ignore="DuplicateIds"></TextView>
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/ic_upload" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/reema"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="200dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="30dp"
+                            android:background="#4887B8"
+                            android:text="حفظ"
+
+                            android:textColor="#F0F1F1">
+
+                        </Button>
+
+                        <Button
+                            android:layout_width="122dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-300dp"
+                            android:layout_marginTop="20dp"
+                            android:background="#4887B8"
+                            android:text="إلغاء"
+                            android:textColor="#F0F1F1"
+
+                            >
+
+                        </Button>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

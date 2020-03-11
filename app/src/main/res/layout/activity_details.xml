@@ -14,63 +14,59 @@
         app:srcCompat="@drawable/mall" />
 
     <TextView
-        android:layout_margin="4dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
+        android:layout_gravity="center_vertical"
         android:layout_margin="4dp"
         android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
+        android:text="TextView"
+        android:textColor="#4887B8"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
+        android:layout_gravity="center_vertical"
         android:layout_margin="4dp"
         android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
+        android:text="TextView"
+        android:textColor="#4887B8"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
+        android:layout_gravity="center_vertical"
         android:layout_margin="4dp"
         android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
+        android:text="TextView"
+        android:textColor="#4887B8"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/baken"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
+        android:layout_gravity="center_vertical"
         android:layout_margin="4dp"
         android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
+        android:text="TextView"
+        android:textColor="#4887B8"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-
-
-
-
+        android:layout_gravity="center_vertical"
+        android:layout_margin="4dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#4887B8"
+        android:textSize="20sp" />
 
 
 </LinearLayout>
