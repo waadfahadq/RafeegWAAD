@@ -25,6 +25,7 @@
         <activity android:name=".StorwsList"></activity>
         <activity android:name=".ui.dashboard.ForgotPasswordActivity"></activity>
         <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".shopowner.MainActivityShopowner"></activity>
     </application>
 
 </manifest>

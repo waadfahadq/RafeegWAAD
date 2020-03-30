@@ -10,7 +10,7 @@ public class storeinfo implements Serializable {
     String typeStore;
     String image;
     String id;
-
+    private String from,to,floor,phone;
     public String getId() {
         return id;
     }
@@ -22,7 +22,7 @@ public class storeinfo implements Serializable {
     public storeinfo() {
     }
 
-    public storeinfo(String name, int num, String email, String beaconID, String typeStore, String image, String id) {
+    public storeinfo(String name, int num, String email, String beaconID, String typeStore, String image, String id,String from,String to,String floor,String phone) {
         this.name = name;
         this.num = num;
         this.email = email;
@@ -30,6 +30,42 @@ public class storeinfo implements Serializable {
         this.typeStore = typeStore;
         this.image = image;
         this.id=id;
+        this.to=to;
+        this.from=from;
+        this.floor = floor;
+        this.phone=phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
 
     public String getName() {

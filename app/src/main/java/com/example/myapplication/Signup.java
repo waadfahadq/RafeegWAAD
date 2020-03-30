@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,13 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.myapplication.admin_portal.ui.requests.requests;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.myapplication.admin_portal.ui.requests.requests;
+import com.example.myapplication.shopowner.shopowner_info;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -44,6 +47,9 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final DatabaseReference myRef = database.getReference("User");
+    private final DatabaseReference myRefStore = database.getReference("shipowners");
+    private final DatabaseReference requests = database.getReference("requests");
+    String isItShopowner;
 
 
 
@@ -52,7 +58,9 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
-
+        Intent intent = getIntent();
+        isItShopowner = intent.getStringExtra("ID");
+        Log.e("storeCr",isItShopowner);
         progressDialog = new ProgressDialog(this);
 
 
@@ -184,11 +192,15 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
                         if(task.isSuccessful()){
 
                             String uid = f1.getCurrentUser().getUid();
-                            String id = myRef.push().getKey();
-                            User_info m =new User_info(Name.getText().toString(),email.getText().toString(),password.getText().toString());
-
-                            myRef.child(uid).setValue(m);
-
+                            if(isItShopowner.equals("Store creation")){
+                                shopowner_info info = new shopowner_info(Name.getText().toString(), email.getText().toString(),false);
+                                myRefStore.child(uid).setValue(info);
+                                requests request = new requests(uid,email.getText().toString(),"New User");
+                                requests.push().setValue(request);
+                            } else {
+                                User_info m = new User_info(Name.getText().toString(), email.getText().toString(), password.getText().toString());
+                                myRef.child(uid).setValue(m);
+                            }
 
 
                             Toast.makeText(Signup.this, "تمت عملية التسجيل بنجاح !", Toast.LENGTH_SHORT).show();

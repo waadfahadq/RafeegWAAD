@@ -46,7 +46,7 @@ public class add extends AppCompatActivity {
     ImageView image;
     Uri uri;
     EditText nameform,email,baken,type;
-    Spinner num;
+    Spinner num,num2;
     ArrayAdapter<String> adapter;
 
     @Override
@@ -59,9 +59,11 @@ public class add extends AppCompatActivity {
         image=findViewById(R.id.image);
         nameform=findViewById(R.id.nameform);
         num=findViewById(R.id.num);
+        num2=findViewById(R.id.num2);
         String [] array=getResources().getStringArray(R.array.numbers);
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
         num.setAdapter(adapter);
+        num2.setAdapter(adapter);
 
         email=findViewById(R.id.email);
         baken=findViewById(R.id.baken);
@@ -196,7 +198,7 @@ public class add extends AppCompatActivity {
 
 
                     String key = ref.push().getKey();
-                    storeinfo storeinfo1=new storeinfo(name,number,email,baken,type,downloadUri.toString(),key);
+                    storeinfo storeinfo1=new storeinfo(name,number,email,baken,type,downloadUri.toString(),key,"","",num2.getSelectedItem().toString(),"");
                     ref.child(key).setValue(storeinfo1).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

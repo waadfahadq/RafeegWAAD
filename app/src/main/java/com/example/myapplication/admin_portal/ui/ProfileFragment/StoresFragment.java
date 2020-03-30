@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.home.storeinfo;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -49,6 +50,14 @@ public class StoresFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_stores, container, false);
         addStore=root.findViewById(R.id.addstore);
         recyclerView=root.findViewById(R.id.lv);
+        ImageView logout = root.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+            }
+        });
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
@@ -78,7 +87,6 @@ public class StoresFragment extends Fragment {
                         intent.putExtra("store",model);
                         intent.putExtra("key",model.getId());
                         startActivity(intent);
-
                     }
                 });
 

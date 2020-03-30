@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">692338094159-6tu01lttss0f2e3fdfap9n6b549g8hm3.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://rafeeg-681c5.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">692338094159</string>
+    <string name="google_api_key" translatable="false">AIzaSyAS-rSw8pp6y9w6CfMJqZDnU8bFl-BgqFk</string>
+    <string name="google_app_id" translatable="false">1:692338094159:android:443cbf4b045d0328943a3a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAS-rSw8pp6y9w6CfMJqZDnU8bFl-BgqFk</string>
+    <string name="google_storage_bucket" translatable="false">rafeeg-681c5.appspot.com</string>
+    <string name="project_id" translatable="false">rafeeg-681c5</string>
+</resources>

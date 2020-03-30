@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/profiles_tab"
+        android:enabled="true"
+        android:title="ملف المتجر"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/Infos_tab"
+        android:enabled="true"
+        android:title="معلومات المتجر"
+        app:showAsAction="ifRoom"/>
+</menu>

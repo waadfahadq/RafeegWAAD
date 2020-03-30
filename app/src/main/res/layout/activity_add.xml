@@ -66,29 +66,59 @@
                         tools:ignore="InvalidImeActionId">
 
                     </EditText>
-
-                    <TextView
-                        android:id="@+id/TV2"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/floor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="148dp"
+                            android:layout_marginTop="4dp"
 
-                        android:text="رقم المحل"
-                        android:textColor="@color/colorPrimary"></TextView>
+                            android:text="رقم الدور"
+                            android:textColor="@color/colorPrimary"></TextView>
+                        <TextView
+                            android:id="@+id/TV2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100dp"
+                            android:layout_marginTop="4dp"
 
+                            android:text="رقم المحل"
+                            android:textColor="@color/colorPrimary"></TextView>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                     <Spinner
 
                         android:id="@+id/num"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
+                        android:layout_marginLeft="148dp"
                         android:layout_marginTop="3dp"
 
 
                         tools:ignore="InvalidId">
 
                     </Spinner>
+                        <Spinner
+
+                            android:id="@+id/num2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="70dp"
+                            android:layout_marginTop="3dp"
+
+
+                            tools:ignore="InvalidId">
+
+                        </Spinner>
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/TV3"
