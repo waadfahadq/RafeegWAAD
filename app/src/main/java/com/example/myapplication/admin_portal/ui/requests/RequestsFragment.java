@@ -39,7 +39,9 @@ public class RequestsFragment extends Fragment {
     private final DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("requests");
     private ExpandableListView list_view;
     List<String> listDataParent;
-    HashMap<String, List<requests>> listDataChild;
+    static HashMap<String, List<requests>> listDataChild;
+    static ExpandableListAdapter listAdapter;
+    static List<requests> newRequests;
     public RequestsFragment() {}
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -114,10 +116,13 @@ public class RequestsFragment extends Fragment {
 
         // Adding child data
         listDataParent.add("طلبات جديدة");
-        listDataParent.add("طلبات تعديل");
-
+//        listDataParent.add("طلبات تعديل");
+        newRequests = new ArrayList<requests>();
         // Adding child data List one
-        final List<requests> newRequests = new ArrayList<requests>();
+        listDataChild.put(listDataParent.get(0), newRequests); // Header, Child data
+        listAdapter = new ExpandableListAdapter(context, listDataParent, listDataChild);
+        list_view.setAdapter(listAdapter);
+        listAdapter.notifyDataSetChanged();
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -133,8 +138,7 @@ public class RequestsFragment extends Fragment {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                requests request = dataSnapshot.getValue(requests.class);
-                newRequests.remove(request);
+
             }
 
             @Override
@@ -163,12 +167,8 @@ public class RequestsFragment extends Fragment {
 //        animals.add("Cat");
 //        animals.add("Elephant");
 //        animals.add("horse");
-
-        listDataChild.put(listDataParent.get(0), newRequests); // Header, Child data
 //        listDataChild.put(listDataParent.get(1), fruits); // Header, Child data
 
-        ExpandableListAdapter listAdapter = new ExpandableListAdapter(context, listDataParent, listDataChild);
-        list_view.setAdapter(listAdapter);
-        listAdapter.notifyDataSetChanged();
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapplication.admin_portal.ui.requests.requests;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -197,17 +199,26 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
                                 myRefStore.child(uid).setValue(info);
                                 requests request = new requests(uid,email.getText().toString(),"New User");
                                 requests.push().setValue(request);
+                                AlertDialog alertDialog = new AlertDialog.Builder(Signup.this)
+                                        .setTitle("تنبيه")
+                                        .setMessage("عزيزي صاحب المتجر \n الرجاء التكرم بزيارتنا لتقديم المستندات المطلوبة ليتم تفعيل حسابك.")
+                                        .setPositiveButton("موافق", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                //set what would happen when positive button is clicked
+                                                Intent intent = new Intent(Signup.this,LoginActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        }).show();
                             } else {
                                 User_info m = new User_info(Name.getText().toString(), email.getText().toString(), password.getText().toString());
                                 myRef.child(uid).setValue(m);
+                                Toast.makeText(Signup.this, "تمت عملية التسجيل بنجاح !", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Signup.this,MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
-
-
-                            Toast.makeText(Signup.this, "تمت عملية التسجيل بنجاح !", Toast.LENGTH_SHORT).show();
-
-                            Intent intent = new Intent(Signup.this,MainActivity.class);
-                            startActivity(intent);
-                            finish();
                         }
                         else {
                             Toast.makeText(Signup.this, "فشلت عملية التسجيل , حاول مرة أخرى !", Toast.LENGTH_SHORT).show();

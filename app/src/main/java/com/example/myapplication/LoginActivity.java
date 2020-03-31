@@ -179,7 +179,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     if (value){
                                         storeLogin(EMAIL,PASS);
                                     }else{
-                                        Toast.makeText(LoginActivity.this, "لم يتم تفعيل حسابك بعد٬ الرجاء الانتظار حتى يتم تفعيله", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this, "لم يتم تفعيل حسابك بعد أو انه محظور٬ الرجاء التفضل بزيارتنا لمزيد من المعلومات", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
