@@ -67,14 +67,14 @@ public class storeinfo implements Serializable {
     public void setTo(String to) {
         this.to = to;
     }
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
+    public  String getName() {
+        return name;
+    }
+
+
 
     public int getNum() {
         return num;
@@ -100,7 +100,7 @@ public class storeinfo implements Serializable {
         this.beaconID = beaconID;
     }
 
-    public String getTypeStore() {
+    public  String getTypeStore() {
         return typeStore;
     }
 

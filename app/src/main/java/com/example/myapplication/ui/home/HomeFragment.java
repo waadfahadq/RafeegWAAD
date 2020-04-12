@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.MainSear;
 import com.example.myapplication.R;
 import com.example.myapplication.StorwsList;
 
@@ -50,7 +51,7 @@ public class HomeFragment extends Fragment {
                     @Override public void onItemClick(View view, int position) {
 
                         secList.get(position);
-                        Intent intent = new Intent(getActivity(), StorwsList.class);
+                        Intent intent = new Intent(getActivity(), MainSear.class);
                         intent.putExtra("title" , secList.get(position).getName());
                         startActivity(intent);
 

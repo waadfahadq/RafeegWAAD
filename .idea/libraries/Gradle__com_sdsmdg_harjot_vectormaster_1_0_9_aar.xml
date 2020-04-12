@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sdsmdg.harjot:vectormaster:1.0.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/042364073aec994c699699939f01a778/vectormaster-1.0.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/042364073aec994c699699939f01a778/vectormaster-1.0.9/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sdsmdg.harjot/vectormaster/1.0.9/24f7acd7db25d8ebc359c24e3f200c81df3a575c/vectormaster-1.0.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sdsmdg.harjot/vectormaster/1.0.9/d3735632590902888f90d63271763700094d18fc/vectormaster-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

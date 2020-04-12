@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.estimote:indoor-sdk-module:2.5.3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8bf8c2fe9edc2bff4f6a1aa06f5f526f/jetified-indoor-sdk-module-2.5.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8bf8c2fe9edc2bff4f6a1aa06f5f526f/jetified-indoor-sdk-module-2.5.3/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.estimote/indoor-sdk-module/2.5.3/53a3024929709d5ecd8e669105bf06f76c7c2547/indoor-sdk-module-2.5.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
