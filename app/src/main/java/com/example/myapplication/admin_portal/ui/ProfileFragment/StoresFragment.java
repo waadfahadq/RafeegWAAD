@@ -1,6 +1,7 @@
 package com.example.myapplication.admin_portal.ui.ProfileFragment;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +28,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
 
 public class StoresFragment extends Fragment {
 
@@ -102,6 +107,51 @@ public class StoresFragment extends Fragment {
             }
         };
         recyclerView.setAdapter(adapter);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT ) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                storeinfo st=adapter.getItem(position);
+
+
+                direction=ItemTouchHelper.LEFT;
+                deleteStore(st.getId());
+
+
+
+                System.out.println("---key --- two  --"+st.getId());
+                //  MyViewHolder M=new MyViewHolder();
+
+
+
+
+
+
+
+
+
+            }
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                //new RecyclerViewSwipeDecorator.Builder(StoresFragment.this,c,recyclerView,viewHolder,dX,dY,actionState,isCurrentlyActive)
+                new RecyclerViewSwipeDecorator.Builder(getContext(),c,recyclerView,viewHolder,dX,dY,actionState,isCurrentlyActive)
+                        .addBackgroundColor(ContextCompat.getColor(getContext(),R.color.RED))
+                        .addActionIcon(R.drawable.ic_delete)
+                        .create()
+                        .decorate();
+
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
+            }
+        }).attachToRecyclerView(recyclerView);
         return root;
     }
 
@@ -135,5 +185,11 @@ public class StoresFragment extends Fragment {
             linearLayout=(LinearLayout)itemView.findViewById(R.id.line5);
             fav_img.setVisibility(View.GONE);
         }
+    }
+    private  void  deleteStore(String key){
+        DatabaseReference deleteStore=FirebaseDatabase.getInstance().getReference("storeinfo").child(key);
+        deleteStore.removeValue();
+
+
     }
 }

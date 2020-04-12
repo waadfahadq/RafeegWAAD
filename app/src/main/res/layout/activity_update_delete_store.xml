@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/profilebg"
     tools:context=".admin_portal.ui.ProfileFragment.UpdateDeleteStoreActivity">
 
     <ImageView
@@ -76,16 +77,10 @@
 
         <Button
             android:layout_weight="1"
-            android:id="@+id/delete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="حذف المحل" />
-
-        <Button
-            android:layout_weight="1"
             android:id="@+id/update"
             android:layout_width="match_parent"
+            android:layout_marginLeft="130dp"
+            android:layout_marginRight="130dp"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
 
