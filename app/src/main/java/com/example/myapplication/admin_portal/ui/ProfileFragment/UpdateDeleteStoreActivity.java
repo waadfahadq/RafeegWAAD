@@ -44,7 +44,7 @@ public class UpdateDeleteStoreActivity extends AppCompatActivity {
     EditText name,email,type,baken;
     ImageView image;
     Spinner number;
-    Button delete,update;
+    Button update;
     String key;
     ArrayAdapter<String> adapter;
     private Uri uri;
@@ -61,7 +61,6 @@ public class UpdateDeleteStoreActivity extends AppCompatActivity {
         type=findViewById(R.id.type);
         baken=findViewById(R.id.baken);
         image=findViewById(R.id.image);
-        delete=findViewById(R.id.delete);
         ref= FirebaseDatabase.getInstance().getReference().child("storeinfo");
 
         String [] array=getResources().getStringArray(R.array.numbers);
@@ -106,33 +105,7 @@ public class UpdateDeleteStoreActivity extends AppCompatActivity {
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog.Builder dailoag = new AlertDialog.Builder(UpdateDeleteStoreActivity.this);
-                dailoag.setTitle("هل أنت  متأكد؟");
-                dailoag.setMessage("سيتم حذف المحل");
-                dailoag.setPositiveButton(" حذف ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        deleteC(key);
 
-                    }
-                });
-                dailoag.setNegativeButton("إلغاء ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(UpdateDeleteStoreActivity.this, " هناك شيء خاطئ", Toast.LENGTH_LONG).show();
-
-                        dialog.dismiss();
-
-                    }
-                });
-                AlertDialog alertDialog = dailoag.create();
-                alertDialog.show();
-
-            }
-        });
 
         update=findViewById(R.id.update);
         update.setOnClickListener(new View.OnClickListener() {
@@ -200,22 +173,7 @@ public class UpdateDeleteStoreActivity extends AppCompatActivity {
 
     }
 
-    private void deleteC(String id) {
 
-        FirebaseDatabase.getInstance().getReference().child("storeinfo").child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    finish();
-                }else {
-                    Toast.makeText(UpdateDeleteStoreActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
-
-    }
 
     void openImage(){
         Intent i = new Intent(

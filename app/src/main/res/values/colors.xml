@@ -9,4 +9,6 @@
     <color name="colorTextPrimary">#ffffff</color>
     <color name="colorTextSecondary">#3E9C1919</color>
     <color name="search_inactive">#B1B0B0</color>
+    <color name="RED">#F0382A</color>
+
 </resources>
