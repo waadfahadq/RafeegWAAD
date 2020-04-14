@@ -44,7 +44,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     FirebaseDatabase database;
     FirebaseAuth firebaseAuth;
     DatabaseReference reference;
-    private ImageView logout;
+    private ImageView logout,delete;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -56,8 +56,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         logout = root.findViewById(R.id.logout);
         logout.setOnClickListener(this);
 
-
-
+        delete = root.findViewById(R.id.delete_account);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),DeleteAccountAcivity.class));
+            }
+        });
 
 
         t1= (TextView) root.findViewById(R.id.textView);

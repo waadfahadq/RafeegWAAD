@@ -62,7 +62,12 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
         setContentView(R.layout.signup);
         Intent intent = getIntent();
         isItShopowner = intent.getStringExtra("ID");
-        Log.e("storeCr",isItShopowner);
+        //Check is the button clicked store or customer
+        if(isItShopowner==null){
+
+        }else {
+            Log.e("storeCr", isItShopowner);
+        }
         progressDialog = new ProgressDialog(this);
 
 
@@ -194,8 +199,8 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
                         if(task.isSuccessful()){
 
                             String uid = f1.getCurrentUser().getUid();
-                            if(isItShopowner.equals("Store creation")){
-                                shopowner_info info = new shopowner_info(Name.getText().toString(), email.getText().toString(),false);
+                            if(isItShopowner !=null && isItShopowner.equals("Store creation")){
+                                shopowner_info info = new shopowner_info(Name.getText().toString(), email.getText().toString().toLowerCase(),false);
                                 myRefStore.child(uid).setValue(info);
                                 requests request = new requests(uid,email.getText().toString(),"New User");
                                 requests.push().setValue(request);

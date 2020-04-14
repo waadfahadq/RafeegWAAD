@@ -24,6 +24,7 @@
         <activity android:name=".admin_portal.MainActivityAdmin" />
         <activity android:name=".StorwsList" />
         <activity android:name=".ui.dashboard.ForgotPasswordActivity" />
+        <activity android:name=".ui.dashboard.DeleteAccountAcivity"/>
         <activity android:name=".DetailsActivity" />
         <activity android:name=".shopowner.MainActivityShopowner" />
     </application>

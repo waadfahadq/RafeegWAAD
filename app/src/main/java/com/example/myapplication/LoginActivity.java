@@ -291,7 +291,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         private void checkStoreExist(final String email, final MyCallback myCallback){
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-            Query query = rootRef.child("shipowners").orderByChild("email").equalTo(email);
+            Query query = rootRef.child("shipowners").orderByChild("email").equalTo(email.toLowerCase());
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -311,7 +311,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     shopowner_info user = snapshot.getValue(shopowner_info.class);
-                    if(user.getEmail().equals(email)) {
+                    if(user.getEmail().equalsIgnoreCase(email)) {
                         if (user.isActive()) {
                             myCallback.onCallback(true);
                             Log.e("Store " + String.valueOf(user.getEmail()), String.valueOf(user.isActive()));
