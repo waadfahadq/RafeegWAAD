@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +15,6 @@ import com.example.myapplication.ui.home.storeinfo;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import javax.security.auth.callback.Callback;
 
 public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHolder>{
     public Context c;
@@ -59,13 +56,13 @@ public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHo
     {
         TextView t1;
         TextView t2;
-        ImageView t3;
+        ImageView t3 ;
         public OurAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(v.getContext(),detail.class);
+                    Intent i = new Intent(v.getContext(), detail.class);
                     i.putExtra("title",arrayList.get(getAdapterPosition()).getName());
                     i.putExtra("descr",arrayList.get(getAdapterPosition()).getTypeStore());
                     i.putExtra("image",arrayList.get(getAdapterPosition()).getImage());
@@ -74,9 +71,10 @@ public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHo
                     v.getContext().startActivity(i);
                 }
             });
-            t1=  (TextView)itemView.findViewById(R.id.textTitle);
-            t2=  (TextView)itemView.findViewById(R.id.textDesc);
-            t3=  (ImageView)itemView.findViewById(R.id.imageViewcard);
+            t1=  (TextView)itemView.findViewById(R.id.shopname2);
+            t2=  (TextView)itemView.findViewById(R.id.shopnum2);
+            t3=  (ImageView)itemView.findViewById(R.id.image2);
+            //fav_img=(ImageView) itemView.findViewById(R.id.fav_img);
         }
     }
 }

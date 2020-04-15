@@ -1,6 +1,6 @@
 package com.example.myapplication.ui.home;
 
-public class LikedStores  {
+public class LikedStores {
 
     String id,storeId,userId;
 

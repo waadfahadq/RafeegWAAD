@@ -6,17 +6,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.example.myapplication.ui.ProfileFragment.ProfileFragment;
 import com.example.myapplication.ui.dashboard.DashboardFragment;
 import com.example.myapplication.ui.home.HomeFragment;
 import com.example.myapplication.ui.notifications.NotificationsFragment;

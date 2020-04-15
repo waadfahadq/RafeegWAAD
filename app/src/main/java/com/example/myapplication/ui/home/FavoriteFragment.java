@@ -61,7 +61,7 @@ public class FavoriteFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_favorite, container, false);
         fav_list=view.findViewById(R.id.fav_list);
         fav_list.setLayoutManager(new LinearLayoutManager(getContext()));
-        query= FirebaseDatabase.getInstance().getReference("users").child(user_id).child("likes");
+        query= FirebaseDatabase.getInstance().getReference("User").child(user_id).child("likes");
 
         options=new FirebaseRecyclerOptions.Builder<LikedStores>().setQuery(query,LikedStores.class).build();
         adapter=new FirebaseRecyclerAdapter<LikedStores, MyViewHolder>(options) {
@@ -75,7 +75,7 @@ public class FavoriteFragment extends Fragment {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(!dataSnapshot.exists()){
                                     Log.d("MUTEE","dataSnapshot.exists()");
-                                    FirebaseDatabase.getInstance().getReference("users").child(user_id).child("likes").child(likedStores.getStoreId()).removeValue();
+                                    FirebaseDatabase.getInstance().getReference("User").child(user_id).child("likes").child(likedStores.getStoreId()).removeValue();
                                 }else {
                                     Log.d("MUTEE","onDataChange");
                                     final storeinfo model1=dataSnapshot.getValue(storeinfo.class);
@@ -98,16 +98,16 @@ public class FavoriteFragment extends Fragment {
                                         @Override
                                         public void onClick(View view) {
 
-                                            FirebaseDatabase.getInstance().getReference("users").child(user_id).child("likes").child(model1.getId()).
+                                            FirebaseDatabase.getInstance().getReference("User").child(user_id).child("likes").child(model1.getId()).
                                                     addListenerForSingleValueEvent(new ValueEventListener() {
                                                         @Override
                                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             if(dataSnapshot.exists()){
-                                                                FirebaseDatabase.getInstance().getReference("users").child(user_id).
+                                                                FirebaseDatabase.getInstance().getReference("User").child(user_id).
                                                                         child("likes").child(model1.getId()).removeValue();
                                                             }else {
 
-                                                                DatabaseReference push = FirebaseDatabase.getInstance().getReference("users").child(user_id).
+                                                                DatabaseReference push = FirebaseDatabase.getInstance().getReference("User").child(user_id).
                                                                         child("likes").child(model1.getId());
                                                                 String key=push.getKey();
                                                                 LikedStores likedStores=new LikedStores(key,model1.getId(),user_id);
@@ -134,7 +134,7 @@ public class FavoriteFragment extends Fragment {
                                     });
 
                                     FirebaseDatabase.getInstance().
-                                            getReference("users")
+                                            getReference("User")
                                             .child(user_id).child("likes")
                                             .child(likedStores.getStoreId()).addValueEventListener(new ValueEventListener() {
                                         @Override

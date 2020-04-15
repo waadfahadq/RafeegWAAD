@@ -35,7 +35,6 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
             android:layout_toStartOf="@+id/search_btn"
-            android:background="@drawable/search_layout"
             android:ems="10"
             android:hint="Search here"
             android:inputType="textPersonName"
@@ -55,7 +54,7 @@
             android:layout_alignTop="@+id/search_field"
             android:layout_marginRight="30dp"
             android:background="@android:color/background_light"
-            app:srcCompat="@mipmap/search_button" />
+             />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/plant_list"
