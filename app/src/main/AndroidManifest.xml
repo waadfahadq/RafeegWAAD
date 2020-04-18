@@ -27,6 +27,10 @@
         <activity android:name=".ui.dashboard.DeleteAccountAcivity"/>
         <activity android:name=".DetailsActivity" />
         <activity android:name=".shopowner.MainActivityShopowner" />
+        <activity android:name=".billingList_back" />
+        <activity android:name=".singleBillInfo" />
+        <activity android:name=".fullScreen" />
+
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 

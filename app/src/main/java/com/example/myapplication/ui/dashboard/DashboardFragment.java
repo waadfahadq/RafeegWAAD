@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.dashboard;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.myapplication.LoginActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.billingList_back;
 import com.example.myapplication.ui.home.FavoriteFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -81,6 +83,12 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                     transaction.replace(R.id.fragment_container, someFragment); // give your fragment container id in first parameter
                     transaction.addToBackStack(account.class.getSimpleName());  // if written, this transaction will be added to backstack
                     transaction.commit();
+                }
+                if (i == 1){
+
+                    Intent intent = new Intent(getActivity(), billingList_back.class);
+                    startActivity(intent);
+                    ( (Activity)getActivity ()).overridePendingTransition (0,0);
                 }
                 if(i==3) {
                     Fragment someFragment = new checklist();

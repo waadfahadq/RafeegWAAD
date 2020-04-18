@@ -40,4 +40,7 @@
         <item>10</item>
     </string-array>
 
+    <string name="gallery" translatable="false">مكتبة الصور</string>
+    <string name="camera" translatable="false">الكاميرا</string>
+
 </resources>
