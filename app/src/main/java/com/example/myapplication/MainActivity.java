@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
+import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
 import com.example.myapplication.ui.dashboard.DashboardFragment;
 import com.example.myapplication.ui.home.HomeFragment;
 import com.example.myapplication.ui.notifications.NotificationsFragment;
@@ -24,6 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
+
+import java.util.List;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -41,6 +50,46 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Notificatio section
+
+        final NotificationApplication application = (NotificationApplication) getApplication();
+
+        RequirementsWizardFactory
+                .createEstimoteRequirementsWizard()
+                .fulfillRequirements(this,
+                        new Function0<Unit>() {
+                            @Override
+                            public Unit invoke() {
+                                Log.d("app", "requirements fulfilled");
+                                application.enableBeaconNotifications();
+                                return null;
+                            }
+                        },
+                        new Function1<List<? extends Requirement>, Unit>() {
+                            @Override
+                            public Unit invoke(List<? extends Requirement> requirements) {
+                                Log.e("app", "requirements missing: " + requirements);
+                                return null;
+                            }
+                        },
+                        new Function1<Throwable, Unit>() {
+                            @Override
+                            public Unit invoke(Throwable throwable) {
+                                Log.e("app", "requirements error: " + throwable);
+                                return null;
+                            }
+                        });
+
+
+        //________________________________________________________
+
+
+
+
+
+
+
         setContentView(R.layout.activity_main);
         mView = findViewById(R.id.customBottomBar);
         heartVector = findViewById(R.id.fab);

@@ -19,7 +19,7 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/build/generated/res/google-services/debug" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/build/generated/res/google-services/debug;file://$MODULE_DIR$/build/generated/res/resValues/debug" />
         <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
@@ -231,10 +231,12 @@
     <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-database-collection:17.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:protolite-well-known-types:17.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.estimote:scanning-plugin:0.21.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:proximity-sdk:1.0.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:scanning-plugin:0.23.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.estimote:cloud-plugin:1.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.estimote:internal-plugins-api:0.22.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:internal-plugins-api:0.23.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.grpc:grpc-android:1.21.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:mustard:0.2.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.estimote:ketchup:0.5.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.jakewharton.timber:timber:4.7.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.1.1@aar" level="project" />
