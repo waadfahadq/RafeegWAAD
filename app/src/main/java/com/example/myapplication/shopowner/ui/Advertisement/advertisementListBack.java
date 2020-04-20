@@ -289,7 +289,7 @@ public class advertisementListBack extends Fragment {
                     advertismentInfo Nm = snapshot.getValue(advertismentInfo.class) ;
 
                     String userId=snapshot.getKey().toString();
-                    String name = Nm.getNameOfAdvertisment ();
+                    String name = Nm.getNameOfBeacon ();
                     nName.add(name);
                     nId.add(userId);
                     inRecycle ();
