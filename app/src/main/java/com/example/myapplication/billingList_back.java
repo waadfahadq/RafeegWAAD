@@ -48,7 +48,7 @@ public class billingList_back extends AppCompatActivity {
 
 
     RecyclerView.Adapter mAdapter;
-   RecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     FirebaseDatabase database1;
     DatabaseReference retreff ;
@@ -65,6 +65,7 @@ public class billingList_back extends AppCompatActivity {
     Uri billImageUri ;
     String uid;
     boolean check = false;
+    String dayOfWeek ;
     //Datebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final DatabaseReference myRef = database.getReference("Bill Information");
@@ -77,17 +78,6 @@ public class billingList_back extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_billing_list_back);
-
-        // Toolbar
-
-       /* Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("الفواتير");
-        toolbar.setTitleTextColor(Color.WHITE);
-        Log.d(TAG, "onCreate");
-*/
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         userid = user.getUid();
@@ -258,8 +248,34 @@ public class billingList_back extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat ;
 
         // time
-        simpleDateFormat  = new SimpleDateFormat ("hh:mm:ss");
-        time = simpleDateFormat.format (calendar.getTime ());
+       // simpleDateFormat  = new SimpleDateFormat ("hh:mm:ss");
+       // time = simpleDateFormat.format (calendar.getTime ());
+
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case Calendar.SUNDAY:
+                dayOfWeek = "SUNDAY" ;
+                break;
+            case Calendar.MONDAY:
+                dayOfWeek = "MONDAY" ;
+                break;
+            case Calendar.TUESDAY:
+                dayOfWeek = "TUESDAY" ;
+                break;
+            case Calendar.WEDNESDAY:
+                dayOfWeek = "WEDNESDAY" ;
+                break;
+            case Calendar.THURSDAY:
+                dayOfWeek = "THURSDAY" ;
+                break;
+            case Calendar.FRIDAY:
+                dayOfWeek = "FRIDAY" ;
+                break;
+            case Calendar.SATURDAY:
+                dayOfWeek = "SATURDAY" ;
+                break;
+        }
 
         // date
         simpleDateFormat = new SimpleDateFormat ("dd-MM-yyyy");
@@ -286,7 +302,7 @@ public class billingList_back extends AppCompatActivity {
                              uid = f1.getCurrentUser().getUid();
                              id = myRef.push().getKey();
 
-                            billInfo  infoOfBill = new billInfo(uid,UserName,downloadUrl.toString (), nameOfBills,time, date);
+                            billInfo  infoOfBill = new billInfo(uid,UserName,downloadUrl.toString (), nameOfBills,dayOfWeek, date);
                             myRef.child(id).setValue(infoOfBill);
                         }
                     });
@@ -361,16 +377,6 @@ public class billingList_back extends AppCompatActivity {
 
 
     }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // handle arrow click here
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            // close this activity and return to preview activity (if there is any)
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
 }
 

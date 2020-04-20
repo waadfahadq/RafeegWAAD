@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.CarvedBottomNavigationView;
 import com.example.myapplication.R;
+import com.example.myapplication.admin_portal.ui.Advertisement.ApproveAD;
 import com.example.myapplication.admin_portal.ui.ProfileFragment.StoresFragment;
 import com.example.myapplication.admin_portal.ui.requests.RequestsFragment;
+import com.example.myapplication.shopowner.ui.Advertisement.advertisementListBack;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
@@ -27,6 +29,7 @@ public class MainActivityAdmin extends AppCompatActivity implements BottomNaviga
     private float mY;
     private RelativeLayout mlinId;
     PathModel outline;
+    private VectorMasterView heartVector2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class MainActivityAdmin extends AppCompatActivity implements BottomNaviga
         mView = findViewById(R.id.customBottomBar);
         heartVector = findViewById(R.id.fab);
         heartVector1 = findViewById(R.id.fab2);
+        heartVector2 = findViewById(R.id.fab3);
 
         mlinId = findViewById(R.id.lin_id);
         mView.inflateMenu(R.menu.menu_bottom_admin);
@@ -52,25 +56,40 @@ public class MainActivityAdmin extends AppCompatActivity implements BottomNaviga
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.stores_tab:
-                tet();
-                // find the correct path using name
-                mlinId.setX(mView.mFirstCurveControlPoint1.x );
-                heartVector.setVisibility(View.VISIBLE);
-                heartVector1.setVisibility(View.GONE);
-                selectAnimation(heartVector);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new StoresFragment()).commit();
-                break;
-
 
             case R.id.requests_tab:
                 tet(6);
                 mlinId.setX(mView.mFirstCurveControlPoint1.x );
                 heartVector.setVisibility(View.GONE);
                 heartVector1.setVisibility(View.VISIBLE);
+                heartVector2.setVisibility(View.GONE);
                 selectAnimation(heartVector1);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RequestsFragment()).commit();
 
+                break;
+
+            case R.id.stores_tab:
+                tet(2);
+                // find the correct path using name
+                mlinId.setX(mView.mFirstCurveControlPoint1.x );
+                heartVector.setVisibility(View.VISIBLE);
+                heartVector1.setVisibility(View.GONE);
+                heartVector2.setVisibility(View.GONE);
+                selectAnimation(heartVector);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new StoresFragment()).commit();
+                break;
+
+
+
+
+            case R.id.ADV_tab:
+                tet();
+                mlinId.setX(mView.mFirstCurveControlPoint1.x );
+                heartVector.setVisibility(View.GONE);
+                heartVector1.setVisibility(View.GONE);
+                heartVector2.setVisibility(View.VISIBLE);
+                selectAnimation(heartVector2);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ApproveAD ()).commit();
                 break;
         }
 

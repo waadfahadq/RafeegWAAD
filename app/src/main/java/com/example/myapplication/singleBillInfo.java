@@ -8,8 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.shopowner.ui.Advertisement.advertisementListBack;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,6 +62,8 @@ public class singleBillInfo extends AppCompatActivity {
         userInfo = new sharedInformation (this);
 
 
+
+
         reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -89,7 +93,7 @@ public class singleBillInfo extends AppCompatActivity {
                             NameOfBill.setText (nameOfBill);
                             userInfo.setKeyConName (nameOfBill);
                             dateOfbill.setText (Nm.getDate ());
-                            timeOfbill.setText (Nm.getTime ());
+                            timeOfbill.setText (Nm.getDayOfWeek ());
                             ImageOfBill.setBackgroundColor (80000000);
                             Picasso.get ().load (Nm.getUrl ()).into (ImageOfBill);
                             photo = Nm.getUrl ();

@@ -8,18 +8,18 @@ public class billInfo {
     private String username;
     private String url;
     private String nameOfBill;
-    private String time;
+    private String dayOfWeek;
     private String date;
 
 
 
-    public billInfo(String id , String username , String url , String nameOfBill , String time , String date ) {
+    public billInfo(String id , String username , String url , String nameOfBill , String dayOfWeek , String date ) {
 
         this.id = id;
         this.username = username;
         this.url = url;
         this.nameOfBill = nameOfBill;
-        this.time= time;
+        this.dayOfWeek= dayOfWeek;
         this.date = date;
 
     }
@@ -61,12 +61,12 @@ public class billInfo {
         this.nameOfBill = nameOfBill;
     }
 
-    public String getTime() {
-        return time;
+    public String getDayOfWeek() {
+        return dayOfWeek;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDayOfWeek(String dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 
     public String getDate() {
