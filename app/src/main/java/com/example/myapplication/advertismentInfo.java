@@ -5,7 +5,7 @@ public class advertismentInfo {
 
     private String id;
     private String username;
-    private String nameOfAdvertisment;
+    private String NameOfBeacon;
     private String description;
     private String dayOfWeek;
     private String date;
@@ -13,11 +13,11 @@ public class advertismentInfo {
 
 
 
-    public advertismentInfo(String id , String username , String nameOfAdvertisment, String description   , String date , String dayOfWeek , String shopName) {
+    public advertismentInfo(String id , String username , String nameOfBeacon, String description   , String date , String dayOfWeek , String shopName) {
 
         this.id = id;
         this.username = username;
-        this.nameOfAdvertisment = nameOfAdvertisment;
+        this.NameOfBeacon = nameOfBeacon;
         this.description = description;
         this.date = date;
         this.dayOfWeek= dayOfWeek;
@@ -53,12 +53,12 @@ public class advertismentInfo {
         this.description = description;
     }
 
-    public String getNameOfAdvertisment() {
-        return nameOfAdvertisment;
+    public String getNameOfBeacon() {
+        return NameOfBeacon;
     }
 
-    public void setNameOfAdvertisment(String nameOfAdvertisment) {
-        this.nameOfAdvertisment = nameOfAdvertisment;
+    public void setNameOfBeacon(String nameOfBeacon) {
+        NameOfBeacon = nameOfBeacon;
     }
 
     public String getDayOfWeek() {

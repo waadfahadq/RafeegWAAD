@@ -77,7 +77,7 @@ public class ForApproval extends AppCompatActivity {
                     advertismentInfo Nm = snapshot.getValue(advertismentInfo.class) ;
 
                     String userId=snapshot.getKey().toString();
-                    String name = Nm.getNameOfAdvertisment ();
+                    String name = Nm.getNameOfBeacon ();
                     String ShpoName = Nm.getShopName ();
                     nName.add(name);
                     ShopName.add (ShpoName);
