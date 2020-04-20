@@ -7,7 +7,14 @@
     android:orientation="vertical"
     android:background="@drawable/profilebg"
     tools:context=".admin_portal.ui.ProfileFragment.UpdateDeleteStoreActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar800"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
 
+        tools:ignore="DuplicateIds,MissingConstraints">
+
+    </androidx.appcompat.widget.Toolbar>
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
@@ -23,7 +30,7 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:hint="اسم المحل" />
+        android:hint="اسم المحل" />
 
     <Spinner
         android:layout_margin="4dp"
@@ -34,7 +41,7 @@
         android:id="@+id/number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         />
+        />
 
     <EditText
         android:layout_margin="4dp"
@@ -45,7 +52,7 @@
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:hint="الايميل" />
+        android:hint="الايميل" />
 
     <EditText
         android:layout_margin="4dp"
@@ -76,13 +83,13 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_weight="1"
             android:id="@+id/update"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="130dp"
-            android:layout_marginRight="130dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:layout_marginLeft="25dp"
+
+            android:gravity="center"
+            android:background="@color/colorPrimary"
 
             android:text="حفظ التعديلات" />
 

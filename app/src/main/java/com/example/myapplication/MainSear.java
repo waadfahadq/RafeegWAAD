@@ -50,10 +50,10 @@ public class MainSear extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sear);
         recyclerView = (RecyclerView) findViewById(R.id.plant_list);
-       recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         arrayList=new ArrayList<>();
         Intent i = getIntent();
-      final  String x=i.getStringExtra("title");
+        final  String x=i.getStringExtra("title");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("storeinfo");
         Query q=FirebaseDatabase.getInstance().getReference().child("storeinfo").orderByChild("typeStore").equalTo(x);
 //        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -77,22 +77,22 @@ public class MainSear extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull final itemViewHolder itemViewHolder, int i, final @NonNull storeinfo model) {
 
-                    Picasso.get().load(model.getImage()).into(itemViewHolder.t3, new Callback() {
-                        @Override
-                        public void onSuccess() {
+                Picasso.get().load(model.getImage()).into(itemViewHolder.t3, new Callback() {
+                    @Override
+                    public void onSuccess() {
 
-                        }
+                    }
 
-                        @Override
-                        public void onError(Exception e) {
+                    @Override
+                    public void onError(Exception e) {
 
-                        }
+                    }
 
 
-                    });
+                });
 
-                    itemViewHolder.t1.setText(model.getName());
-                    itemViewHolder.t2.setText(model.getTypeStore());
+                itemViewHolder.t1.setText(model.getName());
+                itemViewHolder.t2.setText(model.getTypeStore());
                 final String userId= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 itemViewHolder.fav_img.setOnClickListener(new View.OnClickListener() {

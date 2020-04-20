@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "692338094159-ajisuh0i64u0s9enf1l6eeog4trq16rj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "28f867bf2998feb37bc64dd8b25f777eaeca9536"
+          }
+        },
+        {
           "client_id": "692338094159-ccd3sn00ma18iui2lmri1ac54fh6fg33.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -61,7 +69,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:692338094159:android:6844860908e788e5943a3a",
+        "mobilesdk_app_id": "1:692338094159:android:65b333f833e3d256943a3a",
         "android_client_info": {
           "package_name": "com.example.rafeeg"
         }

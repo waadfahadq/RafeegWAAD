@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".NotificationApplication"
         android:allowBackup="true"
@@ -9,7 +12,8 @@
         android:icon="@drawable/logorafeeg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".detail"></activity>
+        <activity android:name=".ApprovalList"></activity>
+        <activity android:name=".detail" />
         <activity android:name=".MainSear" />
         <activity android:name=".admin_portal.ui.ProfileFragment.UpdateDeleteStoreActivity" />
         <activity android:name=".SplashActivity">
@@ -26,16 +30,16 @@
         <activity android:name=".admin_portal.MainActivityAdmin" />
         <activity android:name=".StorwsList" />
         <activity android:name=".ui.dashboard.ForgotPasswordActivity" />
-        <activity android:name=".ui.dashboard.DeleteAccountAcivity"/>
+        <activity android:name=".ui.dashboard.DeleteAccountAcivity" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".shopowner.MainActivityShopowner" />
         <activity android:name=".billingList_back" />
         <activity android:name=".singleBillInfo" />
         <activity android:name=".fullScreen" />
-
+        <activity android:name=".advertisement_list_back" />
+        <activity android:name=".singleAdvertisementInfo" />
+        <activity android:name=".editAd" />
+        <activity android:name=".ForApproval" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

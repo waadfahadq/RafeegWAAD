@@ -12,9 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.CarvedBottomNavigationView;
 import com.example.myapplication.R;
-import com.example.myapplication.admin_portal.MainActivityAdmin;
-import com.example.myapplication.admin_portal.ui.ProfileFragment.StoresFragment;
-import com.example.myapplication.admin_portal.ui.requests.RequestsFragment;
+import com.example.myapplication.shopowner.ui.Advertisement.advertisementListBack;
 import com.example.myapplication.shopowner.ui.info.InfoFragment;
 import com.example.myapplication.shopowner.ui.profile.profileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,6 +30,7 @@ public class MainActivityShopowner extends AppCompatActivity implements BottomNa
     private CarvedBottomNavigationView mView;
     private VectorMasterView heartVector;
     private VectorMasterView heartVector1;
+    private VectorMasterView heartVector2;
     private float mY;
     DatabaseReference reference;
     public static String username;
@@ -45,6 +44,7 @@ public class MainActivityShopowner extends AppCompatActivity implements BottomNa
         mView = findViewById(R.id.customBottomBar);
         heartVector = findViewById(R.id.fab);
         heartVector1 = findViewById(R.id.fab2);
+        heartVector2 = findViewById(R.id.fab3);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference().child("shipowners").child(user.getUid());
         reference.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -72,11 +72,12 @@ public class MainActivityShopowner extends AppCompatActivity implements BottomNa
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.Infos_tab:
-                tet();
+                tet(2);
                 // find the correct path using name
                 mlinId.setX(mView.mFirstCurveControlPoint1.x );
                 heartVector.setVisibility(View.VISIBLE);
                 heartVector1.setVisibility(View.GONE);
+                heartVector2.setVisibility(View.GONE);
                 selectAnimation(heartVector);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new InfoFragment()).commit();
                 break;
@@ -86,10 +87,21 @@ public class MainActivityShopowner extends AppCompatActivity implements BottomNa
                 tet(6);
                 mlinId.setX(mView.mFirstCurveControlPoint1.x );
                 heartVector.setVisibility(View.GONE);
+                heartVector2.setVisibility(View.GONE);
                 heartVector1.setVisibility(View.VISIBLE);
                 selectAnimation(heartVector1);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new profileFragment()).commit();
 
+                break;
+
+            case R.id.ADV_tab:
+                tet();
+                mlinId.setX(mView.mFirstCurveControlPoint1.x );
+                heartVector.setVisibility(View.GONE);
+                heartVector1.setVisibility(View.GONE);
+                heartVector2.setVisibility(View.VISIBLE);
+                selectAnimation(heartVector2);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new advertisementListBack ()).commit();
                 break;
         }
 

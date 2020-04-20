@@ -26,20 +26,14 @@
 
     <Button
         android:id="@+id/addstore"
-        android:layout_width="122dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="120dp"
-        android:layout_marginBottom="32dp"
-        android:background="@color/colorAccent"
+        android:layout_marginLeft="25dp"
 
-        android:text="إضافة محل"
-        android:textColor="#F0F1F1"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
 
-
-        tools:ignore="InvalidId">
-
-    </Button>
+        android:text="إضافة محل" />
 
 
 </LinearLayout>
