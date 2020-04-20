@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: it.xabaras.android:recyclerview-swipedecorator:1.2.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8fcf8dde1383276aa0f2a88217c7ca86/jetified-recyclerview-swipedecorator-1.2.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8fcf8dde1383276aa0f2a88217c7ca86/jetified-recyclerview-swipedecorator-1.2.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c06594b6370dd6d9e758b760744086c/jetified-recyclerview-swipedecorator-1.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4c06594b6370dd6d9e758b760744086c/jetified-recyclerview-swipedecorator-1.2.1/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/it.xabaras.android/recyclerview-swipedecorator/1.2.1/a6469e89abfcd54587665200fd8384c464c04768/recyclerview-swipedecorator-1.2.1-javadoc.jar!/" />

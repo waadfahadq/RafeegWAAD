@@ -3,6 +3,7 @@ package com.example.myapplication.admin_portal.ui.ProfileFragment;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +23,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.shopowner.shopowner_info;
 import com.example.myapplication.ui.home.storeinfo;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 
@@ -121,7 +131,8 @@ public class StoresFragment extends Fragment {
 
 
                 direction=ItemTouchHelper.LEFT;
-                deleteStore(st.getId());
+                deleteStore(st.getId(),st.getEmail());
+                //Log.d("MUTEE", "onSwiped: "+st.toString());
 
 
 
@@ -186,9 +197,47 @@ public class StoresFragment extends Fragment {
             fav_img.setVisibility(View.GONE);
         }
     }
-    private  void  deleteStore(String key){
+    private  void  deleteStore(final String key, final String email){
+        Log.d("MUTEE", "deleteStore: "+email);
         DatabaseReference deleteStore=FirebaseDatabase.getInstance().getReference("storeinfo").child(key);
-        deleteStore.removeValue();
+        deleteStore.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    FirebaseDatabase.getInstance().
+                            getReference().
+                            child("shipowners").orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                            if(dataSnapshot1.exists()){
+                                for (DataSnapshot child : dataSnapshot1.getChildren()) {
+                                    String key=child.getKey();
+                                    final HashMap<String ,Object> map=new HashMap<>();
+                                    map.put("active",false);
+                                    //map.put("email",dataSnapshot1.child("email").getValue(String.class));
+                                    //map.put("name",dataSnapshot1.child("name").getValue(String.class));
+                                    FirebaseDatabase.getInstance()
+                                            .getReference()
+                                            .child("shipowners").child(key).updateChildren(map);
+
+                                }
+
+
+
+
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+        });
 
 
     }

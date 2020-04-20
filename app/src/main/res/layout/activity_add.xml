@@ -260,41 +260,13 @@
                         android:layout_height="150dp"
                         android:src="@drawable/ic_upload" />
 
-
-                    <LinearLayout
+                    <Button
+                        android:id="@+id/reema"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:id="@+id/linearLayout2">
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
 
-
-                        <Button
-                            android:id="@+id/reema"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="200dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="30dp"
-                            android:background="#4887B8"
-                            android:text="حفظ"
-
-                            android:textColor="#F0F1F1">
-
-                        </Button>
-
-                        <Button
-                            android:layout_width="122dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="-300dp"
-                            android:layout_marginTop="20dp"
-                            android:background="#4887B8"
-                            android:text="إلغاء"
-                            android:textColor="#F0F1F1"
-
-                            >
-
-                        </Button>
-                    </LinearLayout>
+                        android:text="حفظ" />
 
 
                 </LinearLayout>

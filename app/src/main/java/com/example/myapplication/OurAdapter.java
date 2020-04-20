@@ -7,11 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.ui.home.LikedStores;
 import com.example.myapplication.ui.home.storeinfo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -43,11 +53,70 @@ public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OurAdapterViewHolder holder, int position) {
-        storeinfo storeinfo=arrayList.get(position);
-        holder.t1.setText(storeinfo.getName());
-        holder.t2.setText(storeinfo.getTypeStore());
-        Picasso.get().load(storeinfo.getImage()).into(holder.t3);
+    public void onBindViewHolder(@NonNull final OurAdapterViewHolder holder, int position) {
+        final storeinfo model=arrayList.get(position);
+        holder.t1.setText(model.getName());
+        holder.t2.setText(model.getTypeStore());
+        Picasso.get().load(model.getImage()).into(holder.t3);
+
+        final String userId= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        holder.fav_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FirebaseDatabase.getInstance().getReference("User").child(userId).child("likes").child(model.getId()).
+                        addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if(dataSnapshot.exists()){
+                                    FirebaseDatabase.getInstance().getReference("User").child(userId).child("likes").child(model.getId()).removeValue();
+                                }else {
+
+                                    DatabaseReference push = FirebaseDatabase.getInstance().getReference("User").child(userId).
+                                            child("likes").child(model.getId());
+                                    String key=push.getKey();
+                                    LikedStores likedStores=new LikedStores(key,model.getId(),userId);
+                                    push.setValue(likedStores).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(c, "Liked", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference("User").child(userId).child("likes").child(model.getId()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+
+                    //Picasso.get().load(R.drawable.ic_fav_on).into(holder.fav_img);
+                    holder.fav_img.setImageResource(R.drawable.ic_fav_on);
+                }else {
+
+                    // Picasso.get().load(R.drawable.ic_fav_off).into(holder.fav_img);
+                    holder.fav_img.setImageResource(R.drawable.ic_fav_off);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
@@ -57,6 +126,7 @@ public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHo
         TextView t1;
         TextView t2;
         ImageView t3 ;
+        ImageView fav_img ;
         public OurAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +144,7 @@ public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHo
             t1=  (TextView)itemView.findViewById(R.id.shopname2);
             t2=  (TextView)itemView.findViewById(R.id.shopnum2);
             t3=  (ImageView)itemView.findViewById(R.id.image2);
+            fav_img=  (ImageView)itemView.findViewById(R.id.fav_img);
             //fav_img=(ImageView) itemView.findViewById(R.id.fav_img);
         }
     }
