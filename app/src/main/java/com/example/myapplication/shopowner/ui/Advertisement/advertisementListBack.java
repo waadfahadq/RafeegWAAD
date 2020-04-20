@@ -305,7 +305,7 @@ public class advertisementListBack extends Fragment {
 
     private void inRecycle (){
 
-        RecyclerView recyclerView= getView().findViewById(R.id.recycler_view);
+        RecyclerView recyclerView= (RecyclerView) getView().findViewById(R.id.recycler_view);
         advertisement_list myr = new advertisement_list(nName,nId,getContext ());
         recyclerView.setAdapter(myr);
         recyclerView.setLayoutManager(new LinearLayoutManager (getContext ()));
