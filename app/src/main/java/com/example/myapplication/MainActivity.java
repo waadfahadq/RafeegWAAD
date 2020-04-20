@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.animation.ValueAnimator;
 import android.graphics.Color;
+import android.graphics.Region;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.estimote.coresdk.observation.region.beacon.BeaconRegion;
+import com.estimote.coresdk.service.BeaconManager;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
 import com.example.myapplication.ui.dashboard.DashboardFragment;
@@ -29,10 +32,13 @@ import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
 import java.util.List;
+import java.util.UUID;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+
+import static com.estimote.mgmtsdk.repackaged.dfu_v0_6_1.no.nordicsemi.android.dfu.DfuBaseService.NOTIFICATION_ID;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -46,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     FirebaseAuth firebaseAuth;
     DatabaseReference reference;
     PathModel outline;
+    private BeaconRegion region ;
+    private BeaconManager beaconManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //Notificatio section
 
         final NotificationApplication application = (NotificationApplication) getApplication();
+
+
 
         RequirementsWizardFactory
                 .createEstimoteRequirementsWizard()
@@ -80,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 return null;
                             }
                         });
+
+
+
+
 
 
         //________________________________________________________
@@ -234,4 +248,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mView.mSecondCurveControlPoint1.set(mView.mSecondCurveStartPoint.x + (mView.CURVE_CIRCLE_RADIUS * 2) - mView.CURVE_CIRCLE_RADIUS, mView.mSecondCurveStartPoint.y);
         mView.mSecondCurveControlPoint2.set(mView.mSecondCurveEndPoint.x - (mView.CURVE_CIRCLE_RADIUS + (mView.CURVE_CIRCLE_RADIUS / 4)), mView.mSecondCurveEndPoint.y);
     }
+
+
+
+
+
 }

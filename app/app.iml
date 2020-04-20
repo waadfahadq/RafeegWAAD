@@ -146,7 +146,7 @@
     <orderEntry type="library" name="Gradle: org.reactivestreams:reactive-streams:1.0.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.6.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.6.1@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.dagger:dagger:2.11@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.dagger:dagger:2.14.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.wojtek.wawerek:skald-kotlin:0.3.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.0.0-alpha2@aar" level="project" />
@@ -231,12 +231,16 @@
     <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-database-collection:17.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:protolite-well-known-types:17.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.estimote:proximity-sdk:1.0.3@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.estimote:scanning-plugin:0.23.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.estimote:cloud-plugin:1.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.estimote:internal-plugins-api:0.23.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:proximity-sdk:1.0.5@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:scanning-plugin:0.25.4@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:sdk:1.0.12@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:mgmtsdk:1.0.11@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:cloud-plugin:1.0.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:management-sdk:0.0.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:internal-plugins-api:0.25.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.grpc:grpc-android:1.21.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.estimote:mustard:0.2.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.estimote:coresdk:1.0.9@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.estimote:ketchup:0.5.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.jakewharton.timber:timber:4.7.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.1.1@aar" level="project" />

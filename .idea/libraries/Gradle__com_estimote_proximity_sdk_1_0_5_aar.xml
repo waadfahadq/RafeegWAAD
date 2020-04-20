@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.estimote:proximity-sdk:1.0.5@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f4fdb3b1357a4792d72b3c1491a01b73/jetified-proximity-sdk-1.0.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f4fdb3b1357a4792d72b3c1491a01b73/jetified-proximity-sdk-1.0.5/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.estimote/proximity-sdk/1.0.5/293b0052affde4425e6c98bbf5c967b510816689/proximity-sdk-1.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
