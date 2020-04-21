@@ -16,15 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myapplication.shopowner.ui.profile.profileFragment;
-import com.example.myapplication.ui.dashboard.DashboardFragment;
-import com.example.myapplication.ui.dashboard.account;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -112,8 +105,6 @@ public class billingList_back extends AppCompatActivity {
                 myAlertDialog.show();
             }
         });
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +112,6 @@ public class billingList_back extends AppCompatActivity {
                finish ();
             }
         });
-
 
         // Save
         save.setOnClickListener(new View.OnClickListener() {
@@ -133,10 +123,8 @@ public class billingList_back extends AppCompatActivity {
 
         // Cancel
         cancel.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-
                 if ( billImageUri != null && nameOFBill != null){
                 AlertDialog.Builder myAlertDialog = new AlertDialog.Builder (billingList_back.this);
                 myAlertDialog.setTitle ("الفواتير ");
@@ -155,7 +143,6 @@ public class billingList_back extends AppCompatActivity {
                         });
                 myAlertDialog.setNegativeButton ("إلغاء", null);
                 myAlertDialog.show ();
-
             }
             }
         });
@@ -184,9 +171,7 @@ public class billingList_back extends AppCompatActivity {
         // to get current time and date
         Calendar calendar = Calendar.getInstance ();
         SimpleDateFormat simpleDateFormat ;
-
         int day = calendar.get(Calendar.DAY_OF_WEEK);
-
         switch (day) {
             case Calendar.SUNDAY:
                 dayOfWeek = "SUNDAY" ;
@@ -214,13 +199,11 @@ public class billingList_back extends AppCompatActivity {
         // date
         simpleDateFormat = new SimpleDateFormat ("dd-MM-yyyy");
         date = simpleDateFormat.format (calendar.getTime ());
-
         // check name of bill
         if (isEmpty(nameOFBill)){
             nameOFBill.setError("يجب ادخال اسم للفاتورة");
             return false;
         }
-
         // check choose image
         if ( billImageUri != null && nameOFBill != null){
             AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(billingList_back.this);
@@ -229,10 +212,8 @@ public class billingList_back extends AppCompatActivity {
             myAlertDialog.setPositiveButton("نعم",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
-
                             billImage.setImageResource(android.R.color.transparent);
                             nameOFBill.getText ().clear ();
-
                             final StorageReference storageRef = storage.child ("Bill Image").child (  System.currentTimeMillis () + "."+ getFileExtension (billImageUri));
                             storageRef.putFile (billImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
                                 @Override
@@ -240,7 +221,6 @@ public class billingList_back extends AppCompatActivity {
                                     storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri> () {
                                         @Override
                                         public void onSuccess(Uri uri) {
-
                                             haveBill = true ;
                                             Uri downloadUrl = uri;
                                             uid = f1.getCurrentUser().getUid();
@@ -262,7 +242,6 @@ public class billingList_back extends AppCompatActivity {
                             myAlertDialog.setMessage("تم رفع الفاتورة بنجاح " );
                             myAlertDialog.setNeutralButton ("موافق", null);
                             myAlertDialog.show();
-
                             billImage.setImageResource(android.R.color.transparent);
                             nameOFBill.getText ().clear ();
                         }
@@ -291,10 +270,7 @@ public class billingList_back extends AppCompatActivity {
             billImage.setImageURI(billImageUri);
         }
     }
-
     private void Bname() {
-
-
         if (haveBill == false) {
             database1 = FirebaseDatabase.getInstance ();
             uid = f1.getCurrentUser().getUid();
@@ -317,7 +293,6 @@ public class billingList_back extends AppCompatActivity {
                         Image.add (url);
                         nId.add (billId);
                         inRecycle ();
-
                     }
                 }
                 @Override
@@ -327,20 +302,15 @@ public class billingList_back extends AppCompatActivity {
             });
         }
     }
-
     private void inRecycle (){
         RecyclerView recyclerView= findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager (this));
         recyclerView.setHasFixedSize(true);
         billingList myr = new billingList(nName,Image,nId,this);
         recyclerView.setAdapter(myr);
-
         LinearLayoutManager layoutManager=
                 new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,true);
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
-
     }
-
-
 }
