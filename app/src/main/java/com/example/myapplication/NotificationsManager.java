@@ -44,10 +44,9 @@ public class NotificationsManager {
     private Notification helloNotification;
     private Notification goodbyeNotification;
     private int notificationId = 1;
-    private String BeaconName;
     private DatabaseReference retreff;
-    private String Shop ;
-    private String msg ;
+    private String Shop = "";
+    private String msg = "";
 
 
 
@@ -56,8 +55,8 @@ public class NotificationsManager {
     public NotificationsManager(Context context) {
         this.context = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        this.helloNotification = buildNotification("Hello","You're near your beacon");
-        this.goodbyeNotification = buildNotification("Bye bye","You've left the proximity of your beacon");
+        //this.helloNotification = buildNotification(getShop(),getMsg());
+        //this.goodbyeNotification = buildNotification(getShop(),"سررنا بزيارتك ! إلى اللقاء ..");
 
     }//end constructor
 
@@ -100,20 +99,25 @@ public class NotificationsManager {
                 .onEnter(new Function1<ProximityZoneContext, Unit>() {
                     @Override
                     public Unit invoke(ProximityZoneContext proximityContext) {
-                        if(proximityContext.getAttachments().get("waad").equals("ice"))
-                            setBeaconName("ice");
-                        else if(proximityContext.getAttachments().get("waad").equals("coconut"))
-                            setBeaconName("coconut");
-                        else
-                            setBeaconName("blueberry");
-                        notificationManager.notify(notificationId, helloNotification);
+
+                        if (proximityContext.getAttachments().get("waad").equals("ice")){
+                         getNotificationMsg("ice");
+                        notificationManager.notify(notificationId, buildNotification(getShop(), getMsg()));
+                    }else if(proximityContext.getAttachments().get("waad").equals("coconut")) {
+                            getNotificationMsg("coconut");
+                            notificationManager.notify(notificationId, buildNotification(getShop(), getMsg()));
+                        }else{
+                        getNotificationMsg("blueberry");
+                        notificationManager.notify(notificationId, buildNotification(getShop(),getMsg()));}
+
+
                         return null;
                     }
                 })
                 .onExit(new Function1<ProximityZoneContext, Unit>() {
                     @Override
                     public Unit invoke(ProximityZoneContext proximityContext) {
-                        notificationManager.notify(notificationId, goodbyeNotification);
+                        notificationManager.notify(notificationId, buildNotification(getShop(),"سررنا بزيارتك ! إلى اللقاء .."));
                         return null;
                     }
                 })
@@ -124,16 +128,24 @@ public class NotificationsManager {
 
     }//end startMonitoring
 
-    public void setBeaconName(String beaconName) {
-        BeaconName = beaconName;
+
+    public void setShop(String shop) {
+        Shop = shop;
     }
 
-    public String getBeaconName() {
-        return BeaconName;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
+    public String getShop() {
+        return Shop;
+    }
 
-    public void getNotificationMsg(String BeaconName){
+    public String getMsg() {
+        return msg;
+    }
+
+    public void getNotificationMsg(final String BeaconName){
 
         retreff = FirebaseDatabase.getInstance().getReference("Advertisment Information");
         retreff.addValueEventListener(new ValueEventListener() {
@@ -142,12 +154,16 @@ public class NotificationsManager {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
 
-                   // if()
-                       // Try t = ds.getValue(Try.class);
-                       // Shop = m.getShopName();
-                       // msg = m.getDescription();
-                        //requestList.add(new Recieved_request(senderS, m1, idS));
-                        //inRecycle();
+
+                        advertismentInfo AdvInfo = ds.getValue(advertismentInfo.class);
+
+
+                        if(AdvInfo.getNameOfAdvertisment().equals(BeaconName)) {
+
+                            setShop(AdvInfo.getShopName());
+                            setMsg(AdvInfo.getDescription());
+                            break;
+                        }
 
 
 

@@ -62,7 +62,7 @@ public class singleAdvertisementInfo extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     advertismentInfo advertismentInfo = snapshot.getValue(advertismentInfo.class);
-                    String AvertismentName = advertismentInfo.getNameOfBeacon ();
+                    String AvertismentName = advertismentInfo.getNameOfAdvertisment ();
 
                     if (nameOfAvertisment.equals(AvertismentName)) {
                         nameOfAver.setText(nameOfAvertisment);
