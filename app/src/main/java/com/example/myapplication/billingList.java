@@ -97,5 +97,14 @@ public class billingList extends  RecyclerView.Adapter<billingList.ViewHolder>{
 
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 
 }

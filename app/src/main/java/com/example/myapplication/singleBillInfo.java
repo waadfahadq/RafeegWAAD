@@ -35,13 +35,15 @@ public class singleBillInfo extends AppCompatActivity {
     ImageView ImageOfBill;
     private String fullScreenInd;
     Button deleteBill ;
+    Button back ;
     static boolean deleteFromList = false;
     String id ;
 
     private sharedInformation userInfo;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference retreff = database.getReference("Bill Information");
-    String key = retreff.child("Bill Information").push().getKey();
+    private FirebaseAuth f1 = FirebaseAuth.getInstance();
+    String uid = f1.getCurrentUser().getUid();
+    DatabaseReference retreff = database.getReference ("User").child (uid).child ("Bill Information");
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String userid = user.getUid();
@@ -55,7 +57,7 @@ public class singleBillInfo extends AppCompatActivity {
         timeOfbill = findViewById(R.id.timeOfbill);
         ImageOfBill = findViewById (R.id.bill_image);
         deleteBill = findViewById (R.id.button3);
-
+        back = findViewById (R.id.back_btn);
 
         nameOfBill = getIntent().getStringExtra("name");
         bId = getIntent().getStringExtra("bId");
@@ -120,6 +122,19 @@ public class singleBillInfo extends AppCompatActivity {
     }
         });
 
+        back.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(singleBillInfo.this, billingList_back.class);
+                startActivity(intent);
+
+                finish();
+
+            }
+        });
+
+
         deleteBill.setOnClickListener (new View.OnClickListener () {
                                            @Override
                                            public void onClick(View view) {
@@ -132,9 +147,10 @@ public class singleBillInfo extends AppCompatActivity {
                                                            final String name = Nm.getNameOfBill ();
                                                            if (nameOfBill.equals (name)) {
 
-                                                               DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference ("Bill Information").child ( snapshot.getKey());
-                                                               databaseRef.removeValue ();
-
+                                                               DatabaseReference retreff = database.getReference ("User").child (uid).child ("Bill Information").child (snapshot.getKey());
+                                                              //  DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference ("User").child (uid).child ("Bill Information").child ( snapshot.getKey());
+                                                            //   databaseRef.removeValue ();
+                                                               retreff.removeValue ();
 
                                                                // deleteFromList = true;
                                                                Intent intent = new Intent(singleBillInfo.this, billingList_back.class);
