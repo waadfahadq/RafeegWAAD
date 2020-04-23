@@ -31,6 +31,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Pattern;
+
 public class Signup extends AppCompatActivity implements  View.OnClickListener {
     public static String NAME,EMAIL, PASS, PHONE ,AGE;
     EditText Name;
@@ -178,26 +180,34 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
             return false;
         }
 
+        if (password.getText().toString().toLowerCase().trim().equals(password.getText().toString())) {
+            password.setError("كلمة المرور ضعيفة! ");
+            return false;
+        } // lower and upper case
 
+        int numDigits= getNumberDigits(password.getText().toString().trim());
 
+        if (numDigits > 0 && numDigits == password.length()) {
+            password.setError("كلمة المرور يجب ان تحتوي على رموز ارقام وحروف! ");
+            return false;
+        } //Check if it's only numbers
 
-
-
-
-
+        int numCharachters= getSpecialDigits(password.getText().toString().trim());
+        Log.e("special",String.valueOf(numCharachters));
+        if (numCharachters == 0 || numCharachters == password.length()) {
+            password.setError("كلمة المرور يجب ان تحتوي على رموز ارقام وحروف! ");
+            return false;
+        }//Check if there is no special character
 
         progressDialog.setMessage("فضلًا انتظر ...");
         progressDialog.show();
 
         f1.createUserWithEmailAndPassword(EMAIL,PASS)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
-
                             String uid = f1.getCurrentUser().getUid();
                             if(isItShopowner !=null && isItShopowner.equals("Store creation")){
                                 shopowner_info info = new shopowner_info(Name.getText().toString(), email.getText().toString().toLowerCase(),false);
@@ -227,7 +237,6 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
                         }
                         else {
                             Toast.makeText(Signup.this, "فشلت عملية التسجيل , حاول مرة أخرى !", Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
@@ -250,6 +259,34 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
             // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static int getNumberDigits(String inString){
+        if (isEmpty(inString)) {
+            return 0;
+        }
+        int numDigits= 0;
+        int length= inString.length();
+        for (int i = 0; i < length; i++) {
+            if (Character.isDigit(inString.charAt(i))) {
+                numDigits++;
+            }
+        }
+        return numDigits;
+    }
+
+    public static int getSpecialDigits(String inString){
+        int numDigits= 0;
+        Pattern regex = Pattern.compile("[$&+,:;=\\\\?@#|/'<>.^*()%!-]");
+        if (regex.matcher(inString).find()) {
+            numDigits++;
+            return numDigits;
+        }
+        return numDigits;
+    }
+
+    public static boolean isEmpty(String inString) {
+        return inString == null || inString.length() == 0;
     }
 
 }

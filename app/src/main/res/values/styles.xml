@@ -21,7 +21,7 @@
         <item name="actionMenuTextColor">@android:color/white</item>
     </style>
     <style name="Base.Widget.AppCompat.ActionMode" parent="">
-        <item name="background">@color/colorPrimaryDark</item>
+        <item name="background">@android:color/white</item>
         <item name="height">?attr/actionBarSize</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

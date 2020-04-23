@@ -31,9 +31,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -78,14 +75,15 @@
 
     <EditText
         android:id="@+id/Password_register"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
-        android:hint="كلمة المرور"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-light"
-        android:textColorHint="@android:color/white"
+        android:hint="كلمة المرور"
+        android:inputType="textPassword"
         android:textColor="@android:color/white"
-        android:layout_height="40dp"></EditText>
+        android:textColorHint="@android:color/white"></EditText>
 
 
     <Button
