@@ -1,29 +1,23 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
-import android.os.Trace;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myapplication.shopowner.ui.Advertisement.advertisementListBack;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
-public class ForApproval extends AppCompatActivity {
+public class for_approval_edit extends AppCompatActivity {
 
     Button back ;
-
-    public static boolean forAdd = false;
+    public static boolean forDelete = false;
     FirebaseDatabase database1;
     DatabaseReference retreff ;
     private ArrayList<String> nId = new ArrayList<>();
@@ -32,11 +26,11 @@ public class ForApproval extends AppCompatActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_for_approval);
+        setContentView (R.layout.activity_for_approval_edit);
 
         back = findViewById (R.id.back_btn);
 
-
+        updateAD ();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,22 +39,23 @@ public class ForApproval extends AppCompatActivity {
         });
 
 
-        AddAd ();
     }
 
-    private void AddAd() {
+    private void updateAD() {
 
-        database1 = FirebaseDatabase.getInstance ();
-        retreff = database1.getReference ("Advertisment Information");
-        retreff.addValueEventListener (new ValueEventListener () {
+        database1= FirebaseDatabase.getInstance();
+        retreff=database1.getReference("Advertisment update Information");
+        retreff.addValueEventListener(new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren ()) {
                     nName.clear(); //Clear your array list before adding new data in it
                 }
-                for (DataSnapshot snapshot : dataSnapshot.getChildren ()) {
+
+                for(DataSnapshot snapshot :dataSnapshot.getChildren()){
                     advertismentInfo Nm = snapshot.getValue(advertismentInfo.class) ;
+
                     String userId=snapshot.getKey().toString();
                     String name = Nm.getNameOfAdvertisment ();
                     String ShpoName = Nm.getShopName ();
@@ -78,12 +73,11 @@ public class ForApproval extends AppCompatActivity {
 
     }
 
-
     private void inRecycle (){
         RecyclerView recyclerView= findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager (this));
         recyclerView.setHasFixedSize(true);
-        ApprovalList myr = new ApprovalList(nName,ShopName,nId,this);
+        ApprovalList_edit myr = new ApprovalList_edit(nName,ShopName,nId,this);
         recyclerView.setAdapter(myr);
         LinearLayoutManager layoutManager=
                 new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,true);

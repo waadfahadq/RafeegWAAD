@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class editAd extends AppCompatActivity {
 
@@ -55,6 +57,8 @@ public class editAd extends AppCompatActivity {
 
         idOfgAdv = getIntent().getStringExtra("idOfgAdv");
         name = getIntent().getStringExtra("nameOfAd");
+
+
         dis = getIntent().getStringExtra("description");
         date = getIntent().getStringExtra("date");
         day = getIntent().getStringExtra("time");
@@ -82,6 +86,9 @@ public class editAd extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
 
+                                singleAdvertisementInfo.editAdv = true ;
+                                singleAdvertisementInfo.canEdit = true ;
+
                                 update();
                                 AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(editAd.this);
                                 myAlertDialog.setTitle("الاعلانات ");
@@ -99,12 +106,14 @@ public class editAd extends AppCompatActivity {
                 myAlertDialog.setNegativeButton ("إلغاء", null);
                 myAlertDialog.show();
 
-/*
-                if (edit == true){
-                    Intent intent = new Intent (editAd.this, advertisement_list_back.class);
-                    startActivity(intent);
-              } */
 
+
+                new Timer ().schedule(new TimerTask () {
+                    @Override
+                    public void run() {
+                        finish ();
+                    }
+                },1500);
             }
         });
 

@@ -8,11 +8,14 @@
     <application
         android:name=".NotificationApplication"
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:icon="@drawable/logorafeeg"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ApprovalList"></activity>
+        <activity android:name=".for_approval_edit"></activity>
+        <activity android:name=".admin_approval_edit" />
+        <activity android:name=".for_approval_dalete" />
+        <activity android:name=".ApprovalList" />
         <activity android:name=".detail" />
         <activity android:name=".MainSear" />
         <activity android:name=".admin_portal.ui.ProfileFragment.UpdateDeleteStoreActivity" />
@@ -36,10 +39,12 @@
         <activity android:name=".billingList_back" />
         <activity android:name=".singleBillInfo" />
         <activity android:name=".fullScreen" />
-        <activity android:name=".advertisement_list_back" />
+        <activity android:name=".Admin_Approval_Add" />
         <activity android:name=".singleAdvertisementInfo" />
         <activity android:name=".editAd" />
         <activity android:name=".ForApproval" />
+        <activity android:name=".Admin_Approval_Delete" />
+        <activity android:name=".shopowner.ui.Advertisement.advertisementListBack" />
     </application>
 
 </manifest>

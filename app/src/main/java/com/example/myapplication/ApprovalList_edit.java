@@ -1,5 +1,4 @@
 package com.example.myapplication;
-
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -11,17 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.List;
 
-public class advertisement_list extends  RecyclerView.Adapter<advertisement_list.ViewHolder>{
+public class ApprovalList_edit extends  RecyclerView.Adapter<ApprovalList_edit.ViewHolder>{
 
     private static final String TAG= "RecycleView";
-    private ArrayList<String> NameOfAvertisment = new ArrayList<>();
+    private List<String> NameOfAvertisment = new ArrayList<>();
+    private List<String> NameOfShop = new ArrayList<>();
     private ArrayList<String>  bID = new ArrayList<>();
     private sharedInformation sharedInformation;
     private Context context;
 
-    public advertisement_list(ArrayList<String> nameOfUser, ArrayList<String> bid, Context con) {
+    public ApprovalList_edit(List<String> nameOfUser,List<String> NameOfShopon, ArrayList<String> bid, Context con) {
         NameOfAvertisment = nameOfUser;
+        NameOfShop = NameOfShopon ;
         bID = bid;
         this.context = con;
     }
@@ -29,8 +31,8 @@ public class advertisement_list extends  RecyclerView.Adapter<advertisement_list
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_advertisement_list,parent,false);
-        advertisement_list.ViewHolder holder= new advertisement_list.ViewHolder (view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_approval_list,parent,false);
+        ApprovalList_edit.ViewHolder holder= new ApprovalList_edit.ViewHolder (view);
         return holder;
     }
 
@@ -38,15 +40,18 @@ public class advertisement_list extends  RecyclerView.Adapter<advertisement_list
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "OnBinViewHolder:called.");
         final String nameOfAvertisment = NameOfAvertisment.get(position);
+        final  String nameOfSHop = NameOfShop.get(position);
         final String BID = bID.get(position);
         sharedInformation  = new sharedInformation (context);
         holder.NameOfAvertisment.setText(nameOfAvertisment);
+        holder.NameOfShopOn.setText (nameOfSHop);
         holder.paerntlyout.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (context, singleAdvertisementInfo.class);
+                Intent intent = new Intent (context, admin_approval_edit.class);
                 intent.putExtra("name",nameOfAvertisment);
+                intent.putExtra("nameOfShop",nameOfSHop);
                 intent.putExtra("BID",BID);
                 sharedInformation.setKeyConid(BID);
                 context.startActivity(intent);
@@ -61,13 +66,16 @@ public class advertisement_list extends  RecyclerView.Adapter<advertisement_list
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView NameOfAvertisment ;
+        TextView NameOfShopOn ;
         RelativeLayout paerntlyout ;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             NameOfAvertisment = itemView.findViewById(R.id.NameOfAdver);
+            NameOfShopOn = itemView.findViewById(R.id.NameOfShop);
             paerntlyout = itemView.findViewById(R.id.paernt);
         }
     }
+
     @Override
     public long getItemId(int position) {
         return position;
@@ -76,4 +84,7 @@ public class advertisement_list extends  RecyclerView.Adapter<advertisement_list
     public int getItemViewType(int position) {
         return position;
     }
+
 }
+
+
