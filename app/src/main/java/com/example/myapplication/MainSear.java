@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.ui.StoreDeatilsActivity;
 import com.example.myapplication.ui.home.LikedStores;
 import com.example.myapplication.ui.home.storeinfo;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -105,6 +106,8 @@ public class MainSear extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if(dataSnapshot.exists()){
                                             FirebaseDatabase.getInstance().getReference("User").child(userId).child("likes").child(model.getId()).removeValue();
+                                            Toast.makeText(MainSear.this, "تم إزالته من المفضلة", Toast.LENGTH_SHORT).show();
+
                                         }else {
 
                                             DatabaseReference push = FirebaseDatabase.getInstance().getReference("User").child(userId).
@@ -115,8 +118,9 @@ public class MainSear extends AppCompatActivity {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
-                                                        Toast.makeText(MainSear.this, "Liked", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(MainSear.this, "تم إضافته للمفضلة", Toast.LENGTH_SHORT).show();
                                                     }
+
                                                 }
                                             });
                                         }
@@ -125,6 +129,7 @@ public class MainSear extends AppCompatActivity {
 
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
+
 
                                     }
                                 });
@@ -143,14 +148,27 @@ public class MainSear extends AppCompatActivity {
 
                             // Picasso.get().load(R.drawable.ic_fav_off).into(holder.fav_img);
                             itemViewHolder.fav_img.setImageResource(R.drawable.ic_fav_off);
+
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
+
                     }
                 });
+                // this Mutee Update
+                itemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent   intent=new Intent(MainSear.this, StoreDeatilsActivity.class);
+                        intent.putExtra("store",model);
+                        startActivity(intent);
+                    }
+                });
+
+
 
             }
 

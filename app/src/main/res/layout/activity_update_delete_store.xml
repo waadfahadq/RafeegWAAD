@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/profilebg"
-    tools:context=".admin_portal.ui.ProfileFragment.UpdateDeleteStoreActivity">
+    tools:context=".admin_portal.ui.ProfileFragment.add">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar800"
         android:layout_width="match_parent"
@@ -15,90 +16,221 @@
         tools:ignore="DuplicateIds,MissingConstraints">
 
     </androidx.appcompat.widget.Toolbar>
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:srcCompat="@mipmap/ic_launcher_round" />
 
-    <EditText
-        android:layout_margin="4dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="اسم المحل" />
 
-    <Spinner
-        android:layout_margin="4dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
-        android:id="@+id/number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
 
-    <EditText
-        android:layout_margin="4dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="الايميل" />
 
-    <EditText
-        android:layout_margin="4dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
-        android:id="@+id/baken"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="رقم البيكن" />
-
-    <EditText
-        android:layout_margin="4dp"
-        android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textSize="20sp"
-        android:textColor="#000"
-        android:id="@+id/type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="نوع المحل" />
 
     <LinearLayout
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/update"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="MissingConstraints" />
 
-            android:gravity="center"
-            android:background="@color/colorPrimary"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
 
-            android:text="حفظ التعديلات" />
+            android:layout_marginRight="30dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custome"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
 
 
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="10dp"
+                        android:text="اسم المحل"
+
+                        android:textColor="@color/colorPrimary">
+
+                    </TextView>
+
+                    <EditText
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14sp"
+                        android:textColor="#000"
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="اسم المحل" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/TV2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="95dp"
+                            android:layout_marginTop="4dp"
+
+                            android:text="رقم المحل"
+                            android:textColor="@color/colorPrimary"></TextView>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:layout_margin="4dp"
+                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="20sp"
+                            android:textColor="#000"
+                            android:id="@+id/number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/TV3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="4dp"
+                        android:text=" ايميل المالك"
+
+                        android:textColor="@color/colorPrimary"></TextView>
+
+                    <EditText
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14sp"
+                        android:textColor="#000"
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="الايميل" />
+
+
+
+
+                    <TextView
+                        android:id="@+id/TV4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="4dp"
+                        android:text=" رقم البيكن"
+
+                        android:textColor="@color/colorPrimary"></TextView>
+
+                    <EditText
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14sp"
+                        android:textColor="#000"
+                        android:id="@+id/baken"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="رقم البيكن" />
+
+                    <TextView
+                        android:id="@+id/TV5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="4dp"
+                        android:text=" نوع المحل "
+                        android:textSize="14sp"
+
+                        android:textColor="@color/colorPrimary"
+                        tools:ignore="DuplicateIds"></TextView>
+
+                    <EditText
+                        android:layout_margin="4dp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14sp"
+                        android:textColor="#000"
+                        android:id="@+id/type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="نوع المحل" />
+
+
+                    <LinearLayout
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/update"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+
+                            android:gravity="center"
+                            android:background="@color/colorPrimary"
+
+                            android:text="حفظ التعديلات" />
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                    <!-- <EditText
+                         android:id="@+id/type"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginLeft="100dp"
+                         android:layout_marginTop="3dp"
+
+                         android:hint=" نوع المحل"
+                         android:textSize="12dp">
+
+                     </EditText>-->
+
+
+
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
-
-
-
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

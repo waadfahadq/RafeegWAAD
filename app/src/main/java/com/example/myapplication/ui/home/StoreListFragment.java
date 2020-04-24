@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.DetailsActivity;
+import com.example.myapplication.MainSear;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.StoreDeatilsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -94,8 +96,8 @@ public class StoreListFragment extends Fragment {
                 holder.shopname.setText(model.getName());
                 holder.shopnum.setText(String.valueOf(model.getNum()));
                 if(isAdded())
-                Glide.with(getActivity()).load(model.getImage()).into(holder.image);
-                holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                    Glide.with(getActivity()).load(model.getImage()).into(holder.image);
+                /*holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent=new Intent(getContext(), DetailsActivity.class);
@@ -104,7 +106,7 @@ public class StoreListFragment extends Fragment {
                         startActivity(intent);
 
                     }
-                });
+                });*/
 
                 holder.fav_img.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -112,33 +114,36 @@ public class StoreListFragment extends Fragment {
 
                         FirebaseDatabase.getInstance().getReference("users").child(userId).child("likes").child(model.getId()).
                                 addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if(dataSnapshot.exists()){
-                                    FirebaseDatabase.getInstance().getReference("users").child(userId).child("likes").child(model.getId()).removeValue();
-                                }else {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if(dataSnapshot.exists()){
+                                            FirebaseDatabase.getInstance().getReference("users").child(userId).child("likes").child(model.getId()).removeValue();
+                                            Toast.makeText(getContext(), "تم إزالته من المفضلة ", Toast.LENGTH_SHORT).show();
 
-                                    DatabaseReference push = FirebaseDatabase.getInstance().getReference("users").child(userId).
-                                            child("likes").child(model.getId());
-                                    String key=push.getKey();
-                                    LikedStores likedStores=new LikedStores(key,model.getId(),userId);
-                                    push.setValue(likedStores).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-                                                Toast.makeText(getContext(), "Liked", Toast.LENGTH_SHORT).show();
-                                            }
+                                        }else {
+
+                                            DatabaseReference push = FirebaseDatabase.getInstance().getReference("users").child(userId).
+                                                    child("likes").child(model.getId());
+                                            String key=push.getKey();
+                                            LikedStores likedStores=new LikedStores(key,model.getId(),userId);
+                                            push.setValue(likedStores).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()){
+                                                        Toast.makeText(getContext(), "تم إضافته للمفضلة", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
                                         }
-                                    });
-                                }
 
-                            }
+                                    }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
+
+                                    }
+                                });
 
                     }
                 });
@@ -152,7 +157,7 @@ public class StoreListFragment extends Fragment {
                             holder.fav_img.setImageResource(R.drawable.ic_fav_on);
                         }else {
 
-                           // Picasso.get().load(R.drawable.ic_fav_off).into(holder.fav_img);
+                            // Picasso.get().load(R.drawable.ic_fav_off).into(holder.fav_img);
                             holder.fav_img.setImageResource(R.drawable.ic_fav_off);
                         }
                     }
@@ -160,6 +165,16 @@ public class StoreListFragment extends Fragment {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                    }
+                });
+
+                // this Mutee Update
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent   intent=new Intent(getActivity(), StoreDeatilsActivity.class);
+                        intent.putExtra("store",model);
+                        startActivity(intent);
                     }
                 });
             }

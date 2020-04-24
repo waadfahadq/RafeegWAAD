@@ -129,7 +129,7 @@ public class UpdateDeleteStoreActivity extends AppCompatActivity {
                 String place_type=type.getText().toString().trim();
 
                 if(TextUtils.isEmpty(store_name)){
-                    Toast.makeText(UpdateDeleteStoreActivity.this, "Please Enter Name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateDeleteStoreActivity.this, "ادخل اسم المحل", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -139,17 +139,17 @@ public class UpdateDeleteStoreActivity extends AppCompatActivity {
                 }*/
 
                 if(TextUtils.isEmpty(ownerEmail)){
-                    Toast.makeText(UpdateDeleteStoreActivity.this, "Please Enter ownerEmail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateDeleteStoreActivity.this, "ادخل ايميل المالك", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(baken_number)){
-                    Toast.makeText(UpdateDeleteStoreActivity.this, "Please Enter baken_number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateDeleteStoreActivity.this, "ادخل رقم البيكن", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(place_type)){
-                    Toast.makeText(UpdateDeleteStoreActivity.this, "Please Enter place type", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateDeleteStoreActivity.this, "ادخل نوع المحل ", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -166,7 +166,7 @@ public class UpdateDeleteStoreActivity extends AppCompatActivity {
                     ref.child(key).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(UpdateDeleteStoreActivity.this, "Store Updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateDeleteStoreActivity.this, "لقد تم تحديث المحل بنجاح ", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -232,7 +232,7 @@ public class UpdateDeleteStoreActivity extends AppCompatActivity {
                     ref.child(key).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(UpdateDeleteStoreActivity.this, "Store Updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateDeleteStoreActivity.this, "لقد تم تحديث المحل بنجاح  ", Toast.LENGTH_SHORT).show();
                         }
                     });
 

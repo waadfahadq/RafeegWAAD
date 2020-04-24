@@ -130,7 +130,7 @@ public class add extends AppCompatActivity {
                 // final String place_type=type.getText().toString().trim();
 
                 if(TextUtils.isEmpty(name)){
-                    Toast.makeText(add.this, "Please Enter Name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(add.this, "ادخل اسم المحل", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -140,12 +140,12 @@ public class add extends AppCompatActivity {
                 }*/
 
                 if(TextUtils.isEmpty(ownerEmail)){
-                    Toast.makeText(add.this, "Please Enter ownerEmail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(add.this, "ادخل إيميل المالك", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(baken_number)){
-                    Toast.makeText(add.this, "Please Enter baken_number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(add.this, "ادخل رقم البيكن", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -155,7 +155,7 @@ public class add extends AppCompatActivity {
                 }*/
 
                 if(uri ==null){
-                    Toast.makeText(add.this, "Please Enter Select photo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(add.this, "ادخل صورة المحل", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 FirebaseDatabase.getInstance()
@@ -165,7 +165,7 @@ public class add extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
-                            Toast.makeText(add.this, "The Number Already Selected befor", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(add.this, "قد تم اختيار هذا الرقم لمحل آخر", Toast.LENGTH_SHORT).show();
                             return;
                         }else {
                             try {
@@ -236,7 +236,7 @@ public class add extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(add.this, "Place Saved", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(add.this, "تم إضافة المحل بنجاح ", Toast.LENGTH_SHORT).show();
                             }else {
                                 Toast.makeText(add.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }

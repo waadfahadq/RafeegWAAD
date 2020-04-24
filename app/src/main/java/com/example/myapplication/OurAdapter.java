@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.ui.StoreDeatilsActivity;
 import com.example.myapplication.ui.home.LikedStores;
 import com.example.myapplication.ui.home.storeinfo;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -71,6 +72,8 @@ public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHo
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(dataSnapshot.exists()){
                                     FirebaseDatabase.getInstance().getReference("User").child(userId).child("likes").child(model.getId()).removeValue();
+                                    Toast.makeText(c, "تم إزالته من المفضلة  ", Toast.LENGTH_SHORT).show();
+
                                 }else {
 
                                     DatabaseReference push = FirebaseDatabase.getInstance().getReference("User").child(userId).
@@ -81,7 +84,7 @@ public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHo
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
-                                                Toast.makeText(c, "Liked", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(c, "تم إضافته للمفضلة ", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -117,6 +120,16 @@ public class OurAdapter extends RecyclerView.Adapter<OurAdapter.OurAdapterViewHo
 
             }
         });
+        // this Mutee Update
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent   intent=new Intent(c, StoreDeatilsActivity.class);
+                intent.putExtra("store",model);
+                c.startActivity(intent);
+            }
+        });
+
 
 
     }

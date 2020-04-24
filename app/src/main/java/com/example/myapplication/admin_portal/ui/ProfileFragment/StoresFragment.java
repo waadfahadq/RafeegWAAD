@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -219,6 +220,7 @@ public class StoresFragment extends Fragment {
                                     FirebaseDatabase.getInstance()
                                             .getReference()
                                             .child("shipowners").child(key).updateChildren(map);
+                                    Toast.makeText(getContext(),"لقد تم حذف المحل ومالك المحل ",Toast.LENGTH_LONG).show();
 
                                 }
 
