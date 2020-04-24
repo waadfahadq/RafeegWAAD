@@ -35,6 +35,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
         android:hint="كلمة المرور"
+        android:inputType="textPassword"
         android:fontFamily="sans-serif-light"
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"
