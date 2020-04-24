@@ -1,29 +1,29 @@
 package com.example.myapplication;
 
+import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Trace;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.shopowner.ui.Advertisement.advertisementListBack;
+import com.example.myapplication.admin_portal.ui.Advertisement.ApproveAD;
+import com.example.myapplication.ui.dashboard.account;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 public class ForApproval extends AppCompatActivity {
 
-    Button back ;
-
-    public static boolean forAdd = false;
     FirebaseDatabase database1;
     DatabaseReference retreff ;
     private ArrayList<String> nId = new ArrayList<>();
@@ -34,16 +34,15 @@ public class ForApproval extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_for_approval);
 
-        back = findViewById (R.id.back_btn);
 
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        setTitle("طلبات إضافة الإعلانات");
+        toolbar.setTitleTextColor(Color.BLACK);
 
         AddAd ();
     }
@@ -55,7 +54,6 @@ public class ForApproval extends AppCompatActivity {
         retreff.addValueEventListener (new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 for (DataSnapshot snapshot : dataSnapshot.getChildren ()) {
                     nName.clear(); //Clear your array list before adding new data in it
                 }
@@ -77,8 +75,6 @@ public class ForApproval extends AppCompatActivity {
         });
 
     }
-
-
     private void inRecycle (){
         RecyclerView recyclerView= findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager (this));
@@ -90,4 +86,16 @@ public class ForApproval extends AppCompatActivity {
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
     }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+
+            onBackPressed();
+
+            // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
+

@@ -218,6 +218,16 @@
 
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="250dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="الرجوع للخلف"
+            android:textSize="18sp"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

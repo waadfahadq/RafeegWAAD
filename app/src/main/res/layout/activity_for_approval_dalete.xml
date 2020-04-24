@@ -13,14 +13,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
 
-        <Button
-            android:id="@+id/back_btn"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:layout_height="56dp"
-            android:layout_marginTop="16dp"
-            android:text="الرجوع للخلف" />
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

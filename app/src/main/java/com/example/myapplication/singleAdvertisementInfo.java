@@ -6,25 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication.shopowner.ui.Advertisement.advertisementListBack;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class singleAdvertisementInfo extends AppCompatActivity {
-
     View view;
     String nameOfAvertisment;
     String bId;
@@ -40,28 +34,25 @@ public class singleAdvertisementInfo extends AppCompatActivity {
     String dis ;
     String dayOfWeek ;
     String dateAD ;
+    Button back ;
     public static boolean deleteAdv = false;
     public static boolean canDelete = false;
     public static boolean canEdit = false;
     public static boolean editAdv = false;
     public static String oldName ;
+    public static String oldDis ;
 
     private sharedInformation AvertismentInfo;
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth f1 = FirebaseAuth.getInstance();
     String uid = f1.getCurrentUser().getUid();
     DatabaseReference retreff = database.getReference ("shipowners").child (uid).child ("ApprovalAD");
     private final DatabaseReference myRef = database.getReference("Delete Advertisment");
-
-
-
-
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_advertisement_info);
-
         nameOfAver = findViewById(R.id.nameOfAdver);
         adverDes = findViewById (R.id.DesOfAdver);
         time = findViewById(R.id.time);
@@ -71,7 +62,7 @@ public class singleAdvertisementInfo extends AppCompatActivity {
         nameOfAvertisment = getIntent().getStringExtra("name");
         bId = getIntent().getStringExtra("BID");
         AvertismentInfo = new sharedInformation (this);
-
+        back = findViewById (R.id.back_btn);
 
         retreff.addValueEventListener(new ValueEventListener () {
             @Override
@@ -79,7 +70,6 @@ public class singleAdvertisementInfo extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     advertismentInfo advertismentInfo = snapshot.getValue(advertismentInfo.class);
                     String AvertismentName = advertismentInfo.getNameOfAdvertisment ();
-
                     if (nameOfAvertisment.equals(AvertismentName)) {
                         nameOfAver.setText(nameOfAvertisment);
                         AvertismentInfo.setKeyConName(nameOfAvertisment);
@@ -92,11 +82,9 @@ public class singleAdvertisementInfo extends AppCompatActivity {
                         idOfgAdv = advertismentInfo.getId ();
                         UserName = advertismentInfo.getUsername ();
                         shopName = advertismentInfo.getShopName ();
-
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -104,32 +92,33 @@ public class singleAdvertisementInfo extends AppCompatActivity {
         });
 
         if (deleteAdv == true || editAdv == true) {
-
             canDelete = false ;
             canDelete = false ;
-
             AlertDialog.Builder myAlertDialog1 = new AlertDialog.Builder (singleAdvertisementInfo.this);
             myAlertDialog1.setTitle ("الاعلانات ");
-            myAlertDialog1.setMessage ("يوجد طلب مسبق لحذف الاعلان، لا يمكن الحذف أو التعديل الان  ");
+            myAlertDialog1.setMessage ("يوجد طلب مسبق ، لا يمكن الحذف أو التعديل الان  ");
             myAlertDialog1.setNeutralButton ("موافق", null);
-
             myAlertDialog1.show ();
-
             edit.setVisibility (View.GONE);
             delete.setVisibility (View.GONE);
 
         }
-
+        back.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         edit.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-
                 canEdit = true ;
                 oldName = nameOfAvertisment;
+                oldDis = dis ;
                     Intent intent = new Intent (singleAdvertisementInfo.this, editAd.class);
                     intent.putExtra ("nameOfAd", nameOfAvertisment);
-                    String description = adverDes.getText ().toString ();
+                    String description = dis;
                     String dateOfAd = date.getText ().toString ();
                     String timeOfAd = time.getText ().toString ();
                     intent.putExtra ("description", description);
@@ -142,29 +131,9 @@ public class singleAdvertisementInfo extends AppCompatActivity {
                     finish ();
             }
         });
-
-
         delete.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-
-                /*
-                if (editAdv == true) {
-
-                    AlertDialog.Builder myAlertDialog1 = new AlertDialog.Builder (singleAdvertisementInfo.this);
-                    myAlertDialog1.setTitle ("الاعلانات ");
-                    myAlertDialog1.setMessage ("يوجد طلب مسبق لحذف الاعلان، لا يمكن الحذف أو التعديل الان  ");
-                    myAlertDialog1.setNeutralButton ("موافق", null);
-
-                    myAlertDialog1.show ();
-
-                    edit.setVisibility (View.GONE);
-                    delete.setVisibility (View.GONE);
-
-                    deleteAdv = true;
-
-                }*/
-
                 AlertDialog.Builder myAlertDialog = new AlertDialog.Builder (singleAdvertisementInfo.this);
                     myAlertDialog.setTitle ("الاعلانات ");
                     myAlertDialog.setMessage ("هل أنت متأكد من حذف الاعلان؟");
@@ -181,8 +150,6 @@ public class singleAdvertisementInfo extends AppCompatActivity {
                                     myAlertDialog.setMessage ("تم رفع الطلب للادراة الرجاء الانتظار ");
                                     myAlertDialog.setNeutralButton ("موافق", null);
                                     myAlertDialog.show ();
-
-
                                     new Timer ().schedule(new TimerTask () {
                                         @Override
                                         public void run() {
@@ -196,7 +163,5 @@ public class singleAdvertisementInfo extends AppCompatActivity {
             }
 
         });
-
     }
-
 }

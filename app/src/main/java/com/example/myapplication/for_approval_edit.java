@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DataSnapshot;
@@ -16,31 +19,27 @@ import java.util.ArrayList;
 
 public class for_approval_edit extends AppCompatActivity {
 
-    Button back ;
-    public static boolean forDelete = false;
     FirebaseDatabase database1;
     DatabaseReference retreff ;
     private ArrayList<String> nId = new ArrayList<>();
     private ArrayList<String> nName = new ArrayList<>();
     private ArrayList<String> ShopName = new ArrayList<>();
+    private ArrayList<String> DIS = new ArrayList<>();
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_for_approval_edit);
 
-        back = findViewById (R.id.back_btn);
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
 
-        updateAD ();
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
+        setTitle("طلبات تعديل الإعلانات");
+        toolbar.setTitleTextColor(Color.BLACK);
+        updateAD();
     }
-
     private void updateAD() {
 
         database1= FirebaseDatabase.getInstance();
@@ -55,12 +54,13 @@ public class for_approval_edit extends AppCompatActivity {
 
                 for(DataSnapshot snapshot :dataSnapshot.getChildren()){
                     advertismentInfo Nm = snapshot.getValue(advertismentInfo.class) ;
-
                     String userId=snapshot.getKey().toString();
                     String name = Nm.getNameOfAdvertisment ();
                     String ShpoName = Nm.getShopName ();
+                    String dis = Nm.getDescription ();
                     nName.add(name);
                     ShopName.add (ShpoName);
+                    DIS.add (dis);
                     nId.add(userId);
                     inRecycle ();
                 }
@@ -77,11 +77,22 @@ public class for_approval_edit extends AppCompatActivity {
         RecyclerView recyclerView= findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager (this));
         recyclerView.setHasFixedSize(true);
-        ApprovalList_edit myr = new ApprovalList_edit(nName,ShopName,nId,this);
+        ApprovalList_edit myr = new ApprovalList_edit(nName,ShopName,DIS, nId,this);
         recyclerView.setAdapter(myr);
         LinearLayoutManager layoutManager=
                 new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,true);
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+
+            onBackPressed();
+
+            // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

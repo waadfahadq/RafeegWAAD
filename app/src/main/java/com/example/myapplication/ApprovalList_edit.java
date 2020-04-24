@@ -17,13 +17,15 @@ public class ApprovalList_edit extends  RecyclerView.Adapter<ApprovalList_edit.V
     private static final String TAG= "RecycleView";
     private List<String> NameOfAvertisment = new ArrayList<>();
     private List<String> NameOfShop = new ArrayList<>();
+    private List<String> Dis = new ArrayList<>();
     private ArrayList<String>  bID = new ArrayList<>();
     private sharedInformation sharedInformation;
     private Context context;
 
-    public ApprovalList_edit(List<String> nameOfUser,List<String> NameOfShopon, ArrayList<String> bid, Context con) {
+    public ApprovalList_edit(List<String> nameOfUser,List<String> NameOfShopon, List<String> DIS, ArrayList<String> bid, Context con) {
         NameOfAvertisment = nameOfUser;
         NameOfShop = NameOfShopon ;
+        Dis = DIS;
         bID = bid;
         this.context = con;
     }
@@ -41,6 +43,7 @@ public class ApprovalList_edit extends  RecyclerView.Adapter<ApprovalList_edit.V
         Log.d(TAG, "OnBinViewHolder:called.");
         final String nameOfAvertisment = NameOfAvertisment.get(position);
         final  String nameOfSHop = NameOfShop.get(position);
+        final  String DISC = Dis.get (position);
         final String BID = bID.get(position);
         sharedInformation  = new sharedInformation (context);
         holder.NameOfAvertisment.setText(nameOfAvertisment);
@@ -52,6 +55,7 @@ public class ApprovalList_edit extends  RecyclerView.Adapter<ApprovalList_edit.V
                 Intent intent = new Intent (context, admin_approval_edit.class);
                 intent.putExtra("name",nameOfAvertisment);
                 intent.putExtra("nameOfShop",nameOfSHop);
+                intent.putExtra("dis",DISC);
                 intent.putExtra("BID",BID);
                 sharedInformation.setKeyConid(BID);
                 context.startActivity(intent);

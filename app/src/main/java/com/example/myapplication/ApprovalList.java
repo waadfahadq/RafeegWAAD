@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.myapplication.admin_portal.ui.Advertisement.ApproveAD;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -3,21 +3,21 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -37,7 +37,6 @@ public class Admin_Approval_Add extends AppCompatActivity {
     TextView dayOfWeek;
     Button Add ;
     Button delete;
-    Button back ;
     boolean deleteAd = false ;
     private sharedInformation AvertismentInfo;
     public static boolean canDeleteAndEdit = false ;
@@ -50,7 +49,6 @@ public class Admin_Approval_Add extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_admin__approval);
-
         nameOFShop = findViewById (R.id.nameOfShop);
         nameOfAver = findViewById (R.id.nameOfAdver);
         adverDes = findViewById (R.id.DesOfAdver);
@@ -58,21 +56,25 @@ public class Admin_Approval_Add extends AppCompatActivity {
         dayOfWeek = findViewById (R.id.time);
         Add = findViewById (R.id.button3);
         delete = findViewById (R.id.button4);
-        back = findViewById (R.id.back_btn);
-
         nameOfShop = getIntent ().getStringExtra ("nameOfShop");
         nameOfAvertisment = getIntent ().getStringExtra ("name");
         bId = getIntent ().getStringExtra ("BID");
         AvertismentInfo = new sharedInformation (this);
 
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        setTitle("طلبات إضافة الإعلانات");
+        toolbar.setTitleTextColor(Color.BLACK);
         databaseReference.addValueEventListener (new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren ()) {
                     advertismentInfo advertismentInfo = snapshot.getValue (advertismentInfo.class);
                     String AvertismentName = advertismentInfo.getNameOfAdvertisment ();
-
                     if (nameOfAvertisment.equals (AvertismentName)) {
                         nameOfAver.setText (nameOfAvertisment);
                         AvertismentInfo.setKeyConName (nameOfAvertisment);
@@ -82,11 +84,9 @@ public class Admin_Approval_Add extends AppCompatActivity {
                         dayOfWeek.setText (advertismentInfo.getDayOfWeek ());
                         uid = advertismentInfo.getId ();
                         UserName = advertismentInfo.getUsername ();
-
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -94,19 +94,9 @@ public class Admin_Approval_Add extends AppCompatActivity {
         });
 
 
-        back.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Admin_Approval_Add.this, ForApproval.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         Add.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-
                 AlertDialog.Builder myAlertDialog = new AlertDialog.Builder (Admin_Approval_Add.this);
                 myAlertDialog.setTitle("الاعلانات ");
                 myAlertDialog.setMessage("هل أنت متأكد من قبول الاعلان؟");
@@ -126,14 +116,12 @@ public class Admin_Approval_Add extends AppCompatActivity {
                                 deleteAd = true ;
                                 canDeleteAndEdit = true;
                                 if(deleteAd == true){
-
                                     myRef.addValueEventListener(new ValueEventListener () {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                                 advertismentInfo advertismentInfo = snapshot.getValue(advertismentInfo.class);
                                                 String AvertismentName = advertismentInfo.getNameOfAdvertisment ();
-
                                                 if (nameOfAvertisment.equals (AvertismentName)) {
                                                     DatabaseReference retreff = firebaseDatabase.getReference ("Advertisment Information").child (snapshot.getKey());
                                                     retreff.removeValue ();
@@ -144,23 +132,12 @@ public class Admin_Approval_Add extends AppCompatActivity {
                                         public void onCancelled(@NonNull DatabaseError databaseError) {
                                         }
                                     });
-
                                 }
-
-
-
                                 AlertDialog.Builder myAlertDialog = new AlertDialog.Builder (Admin_Approval_Add.this);
                                 myAlertDialog.setTitle("الاعلانات ");
                                 myAlertDialog.setMessage("تم قبول الاعلان بنجاح " );
                                 myAlertDialog.setNeutralButton ("موافق", null);
                                 myAlertDialog.show();
-
-                                new Timer ().schedule(new TimerTask () {
-                                    @Override
-                                    public void run() {
-                                        startActivity(new Intent(Admin_Approval_Add.this, ForApproval.class));
-                                    }
-                                },1500);
                             }
                         });
                 myAlertDialog.setNegativeButton ("إلغاء", null);
@@ -203,12 +180,6 @@ public class Admin_Approval_Add extends AppCompatActivity {
                                 myAlertDialog.setNeutralButton ("موافق", null);
                                 myAlertDialog.show ();
 
-                                new Timer ().schedule(new TimerTask () {
-                                    @Override
-                                    public void run() {
-                                        startActivity(new Intent(Admin_Approval_Add.this, ForApproval.class));
-                                    }
-                                },1500);
                             }
                         });
                 myAlertDialog.setNegativeButton ("إلغاء", null);
@@ -217,5 +188,16 @@ public class Admin_Approval_Add extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+
+            onBackPressed();
+
+            // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
