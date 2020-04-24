@@ -42,6 +42,7 @@ public class MainSear extends AppCompatActivity {
     DatabaseReference mDatabase;
     Context context;
     EditText sear;
+    String x;
     ArrayList<storeinfo> arrayList;
     FirebaseRecyclerOptions<storeinfo> options;
     FirebaseRecyclerAdapter<storeinfo, itemViewHolder> adapter;
@@ -54,7 +55,7 @@ public class MainSear extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         arrayList=new ArrayList<>();
         Intent i = getIntent();
-        final  String x=i.getStringExtra("title");
+        x=i.getStringExtra("title");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("storeinfo");
         Query q=FirebaseDatabase.getInstance().getReference().child("storeinfo").orderByChild("typeStore").equalTo(x);
 //        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -224,6 +225,7 @@ public class MainSear extends AppCompatActivity {
                         arrayList.clear();
                         for(DataSnapshot dss:dataSnapshot.getChildren()){
                             final storeinfo storeinfo=dss.getValue(com.example.myapplication.ui.home.storeinfo.class);
+                            if(storeinfo.getTypeStore().equals(x))
                             arrayList.add(storeinfo);
                         }
                         OurAdapter ourAdapter=new OurAdapter(getApplicationContext(),arrayList);
