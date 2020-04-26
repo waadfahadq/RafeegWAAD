@@ -64,7 +64,7 @@ public class checklistAdapter extends ArrayAdapter<checklistModel> {
             convertView = inflater.inflate(R.layout.checklist, null, true);
             holder = new ViewHolder();
             holder.namTxt = (TextView) convertView.findViewById(R.id.textView3);
-            holder.qu = (TextView) convertView.findViewById(R.id.textView4);
+//            holder.qu = (TextView) convertView.findViewById(R.id.textView4);
             holder.chk = (CheckBox) convertView.findViewById(R.id.checkBox);
             convertView.setTag(holder);
         } else {
@@ -74,7 +74,7 @@ public class checklistAdapter extends ArrayAdapter<checklistModel> {
         final checklistModel model = list.get(position);
         if(model!=null) {
             holder.namTxt.setText(model.getProductname());
-            holder.qu.setText(model.getQuantity());
+//            holder.qu.setText(model.getQuantity());
             if (model.isChecked()) {
                 holder.chk.setChecked(true);
                 holder.namTxt.setPaintFlags(holder.namTxt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);

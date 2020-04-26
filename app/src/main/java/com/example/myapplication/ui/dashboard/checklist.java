@@ -118,7 +118,7 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
         f1 = (FloatingActionButton) rootView.findViewById(R.id.floatingActionButton);
         final View customLayout = getLayoutInflater().inflate(R.layout.custom_layout_dialog, null);
         final EditText name = customLayout.findViewById(R.id.editText);
-        final NumberPicker n1 = customLayout.findViewById(R.id.numberPicker);
+//        final NumberPicker n1 = customLayout.findViewById(R.id.numberPicker);
         f1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,7 +147,7 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                                 name.setError("الرجاء إدخال اسم المنتج");
 
                             } else{
-                                model = new checklistModel(name.getText().toString(), String.valueOf(n1.getProgress()), false, "");
+                                model = new checklistModel(name.getText().toString(), "", false, "");
                                 mDatabase.child("checkList").child(user.getUid()).push().setValue(model, new DatabaseReference.CompletionListener() {
                                     @Override
                                     public void onComplete(DatabaseError databaseError,
@@ -157,7 +157,7 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                                         model.setKey(uniqueKey);
                                     }
                                 });
-                                Log.e("chosen quantity", String.valueOf(n1.getProgress()));
+//                                Log.e("chosen quantity", String.valueOf(n1.getProgress()));
                                 dialog1.dismiss();
                             }
                         }
@@ -247,9 +247,9 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
         else if (!hasCheckedItems && mActionMode != null)
             // there no selected items, finish the actionMode
             mActionMode.finish();
-//        if (mActionMode != null)
-//            mActionMode.setTitle(String.valueOf(adapter
-//                    .getSelectedCount()) + " تم إختياره");
+        if (mActionMode != null)
+            mActionMode.setTitle(String.valueOf(adapter
+                    .getSelectedCount()) + " تم إختيار");
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflator) {
@@ -278,8 +278,8 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                     mActionMode = getActivity().startActionMode(new ActionModeCallback());
                     // there no selected items, finish the actionMode
                     if (mActionMode != null)
-//                    mActionMode.setTitle(String.valueOf(adapter
-//                            .getSelectedCount()) + " تم إختيار");
+                    mActionMode.setTitle(String.valueOf(adapter
+                            .getSelectedCount()) + " تم إختيار");
                 break;
             default:
                 break;

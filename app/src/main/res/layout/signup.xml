@@ -82,6 +82,7 @@
         android:fontFamily="sans-serif-light"
         android:hint="كلمة المرور"
         android:inputType="textPassword"
+        android:gravity="right"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"></EditText>
 
