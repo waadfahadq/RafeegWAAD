@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         firebaseAuth = FirebaseAuth.getInstance();
 
         if (firebaseAuth.getCurrentUser() != null) {
+            Log.e("test","Test ad");
             checkStoreExist(firebaseAuth.getCurrentUser().getEmail(), new MyCallback() {
                 @Override
                 public void onCallback(boolean value) {

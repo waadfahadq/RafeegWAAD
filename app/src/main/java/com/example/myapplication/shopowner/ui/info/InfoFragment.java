@@ -1,5 +1,6 @@
 package com.example.myapplication.shopowner.ui.info;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,6 +56,7 @@ public class InfoFragment extends Fragment {
     EditText from,to,phone;
     FirebaseAuth firebaseAuth;
     Button save,cancel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         infoViewModel =
@@ -138,6 +141,7 @@ public class InfoFragment extends Fragment {
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                             if (dataSnapshot.exists()) {
                                 dataSnapshot.getRef().updateChildren(map);
+                                Toast.makeText(getContext(),"تم حفظ البيانات بنجاح",Toast.LENGTH_LONG).show();
                             }
                         }
 

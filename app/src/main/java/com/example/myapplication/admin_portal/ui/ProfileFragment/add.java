@@ -175,6 +175,16 @@ public class add extends AppCompatActivity {
                     return;
                 }*/
 
+                if(num.getSelectedItemPosition()==0){
+                    Toast.makeText(add.this, "اختر رقم المحل", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(num2.getSelectedItemPosition()==0){
+                    Toast.makeText(add.this, "اختر رقم الدور", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(emailSp.getSelectedItemPosition()==0){
                     Toast.makeText(add.this, "اختر إيميل المالك", Toast.LENGTH_SHORT).show();
                     return;
