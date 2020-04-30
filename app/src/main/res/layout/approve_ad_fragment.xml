@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/profilebg"
-    >
+    tools:context=".Admin_Approval_Delete">
+
+
     <ImageView
         android:id="@+id/logout"
         android:layout_width="40dp"
@@ -21,8 +23,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="180dp"
         android:background="@color/colorAccent"
         android:text="   طلبات إضافة الاعلانات  "
         android:textColor="#F0F1F1"
@@ -38,7 +39,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="40dp"
         android:background="@color/colorAccent"
         android:text="   طلبات تعديل الاعلانات   "
         android:textColor="#F0F1F1"
@@ -52,13 +53,20 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="40dp"
         android:background="@color/colorAccent"
         android:text="   طلبات حذف الاعلانات   "
         android:textColor="#F0F1F1"
         tools:ignore="InvalidId">
 
     </Button>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp">
+    </FrameLayout>
 
 
 

@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class advertisement_list extends  RecyclerView.Adapter<advertisement_list.ViewHolder>{
@@ -69,5 +67,13 @@ public class advertisement_list extends  RecyclerView.Adapter<advertisement_list
             NameOfAvertisment = itemView.findViewById(R.id.NameOfAdver);
             paerntlyout = itemView.findViewById(R.id.paernt);
         }
+    }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 }

@@ -16,6 +16,7 @@
     <string name="menu_delete">Delete</string>
     <string name="Partner"> محل حديد؟ حياك معنا</string>
     <string-array name="numbers">
+        <item>اختر</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

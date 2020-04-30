@@ -2,31 +2,27 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-
-
+import java.util.List;
 
 public class ApprovalList extends  RecyclerView.Adapter<ApprovalList.ViewHolder>{
 
     private static final String TAG= "RecycleView";
-    private ArrayList<String> NameOfAvertisment = new ArrayList<>();
-    private ArrayList<String> NameOfShop = new ArrayList<>();
+    private List<String> NameOfAvertisment = new ArrayList<>();
+    private List<String> NameOfShop = new ArrayList<>();
     private ArrayList<String>  bID = new ArrayList<>();
     private sharedInformation sharedInformation;
     private Context context;
 
-    public ApprovalList(ArrayList<String> nameOfUser, ArrayList<String> NameOfShopon, ArrayList<String> bid, Context con) {
+    public ApprovalList(List<String> nameOfUser,List<String> NameOfShopon, ArrayList<String> bid, Context con) {
         NameOfAvertisment = nameOfUser;
         NameOfShop = NameOfShopon ;
         bID = bid;
@@ -45,7 +41,7 @@ public class ApprovalList extends  RecyclerView.Adapter<ApprovalList.ViewHolder>
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "OnBinViewHolder:called.");
         final String nameOfAvertisment = NameOfAvertisment.get(position);
-        final  String nameOfSHop = NameOfShop.get (position);
+        final  String nameOfSHop = NameOfShop.get(position);
         final String BID = bID.get(position);
         sharedInformation  = new sharedInformation (context);
         holder.NameOfAvertisment.setText(nameOfAvertisment);
@@ -54,7 +50,7 @@ public class ApprovalList extends  RecyclerView.Adapter<ApprovalList.ViewHolder>
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (context, singleAdvertisementInfo.class);
+                Intent intent = new Intent (context, Admin_Approval_Add.class);
                 intent.putExtra("name",nameOfAvertisment);
                 intent.putExtra("nameOfShop",nameOfSHop);
                 intent.putExtra("BID",BID);
@@ -81,6 +77,14 @@ public class ApprovalList extends  RecyclerView.Adapter<ApprovalList.ViewHolder>
         }
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 
 }
 

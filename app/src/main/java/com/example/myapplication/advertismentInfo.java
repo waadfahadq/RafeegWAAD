@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
 public class advertismentInfo {
-
-
     private String id;
     private String username;
     private String nameOfAdvertisment;
@@ -10,8 +8,6 @@ public class advertismentInfo {
     private String dayOfWeek;
     private String date;
     private String shopName ;
-
-
 
     public advertismentInfo(String id , String username , String nameOfAdvertisment, String description   , String date , String dayOfWeek , String shopName) {
 
@@ -23,7 +19,6 @@ public class advertismentInfo {
         this.dayOfWeek= dayOfWeek;
         this.shopName = shopName ;
     }
-
 
     public advertismentInfo(){
 

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.estimote:indoorsdk:2.5.3@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/75dd98d3f0e28e8575550d8632ac5c2d/jetified-indoorsdk-2.5.3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/75dd98d3f0e28e8575550d8632ac5c2d/jetified-indoorsdk-2.5.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4da69a3823f2ee5fd035312dbc0be8a6/jetified-indoorsdk-2.5.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4da69a3823f2ee5fd035312dbc0be8a6/jetified-indoorsdk-2.5.3/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -14,11 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.example.myapplication.Admin_Approval_Add;
 import com.example.myapplication.ApprovalList;
 import com.example.myapplication.ForApproval;
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.billingList_back;
+import com.example.myapplication.for_approval_dalete;
+import com.example.myapplication.for_approval_edit;
 
 public class ApproveAD extends Fragment {
 
@@ -38,7 +43,14 @@ public class ApproveAD extends Fragment {
         mViewModel =
                 ViewModelProviders.of(this).get(ApproveAdViewModel.class);
         View root =  inflater.inflate (R.layout.approve_ad_fragment, container, false);
-
+        ImageView logout = root.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+            }
+        });
         Add = root.findViewById (R.id.addAdv);
         edit = root.findViewById (R.id.editAdv);
         delete = root.findViewById (R.id.deleteAdv);
@@ -59,7 +71,7 @@ public class ApproveAD extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(),ForApproval.class);
+                Intent intent = new Intent(getActivity(), for_approval_edit.class);
                 startActivity(intent);
                 ( (Activity)getActivity ()).overridePendingTransition (0,0);
             }
@@ -70,7 +82,7 @@ public class ApproveAD extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(),ForApproval.class);
+                Intent intent = new Intent(getActivity(), for_approval_dalete.class);
                 startActivity(intent);
                 ( (Activity)getActivity ()).overridePendingTransition (0,0);
             }

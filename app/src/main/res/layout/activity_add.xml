@@ -98,28 +98,21 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <Spinner
-
                             android:id="@+id/num"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="48dp"
                             android:layout_marginTop="3dp"
-
-
                             tools:ignore="InvalidId">
-
                         </Spinner>
-                        <Spinner
 
+                        <Spinner
                             android:id="@+id/num2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="3dp"
-
-
                             tools:ignore="InvalidId">
-
                         </Spinner>
                     </LinearLayout>
 
@@ -133,18 +126,13 @@
 
                         android:textColor="@color/colorPrimary"></TextView>
 
-                    <EditText
-                        android:id="@+id/email"
+                    <Spinner
+                        android:id="@+id/Emailnum"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="48dp"
                         android:layout_marginTop="3dp"
-
-                        android:hint="ايميل المالك"
-                        android:textSize="12dp">
-
-
-                    </EditText>
+                        tools:ignore="InvalidId"></Spinner>
 
                     <TextView
                         android:id="@+id/TV4"

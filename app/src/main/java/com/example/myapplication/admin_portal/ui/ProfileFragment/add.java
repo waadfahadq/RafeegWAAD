@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -27,6 +29,7 @@ import com.example.myapplication.ui.home.storeinfo;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +45,9 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class add extends AppCompatActivity {
 
@@ -51,11 +56,11 @@ public class add extends AppCompatActivity {
     DatabaseReference ref;
     ImageView image;
     Uri uri;
-    EditText nameform,email,baken,type;
-    Spinner num,num2;
-    ArrayAdapter<String> adapter;
+    EditText nameform,baken,type;
+    Spinner num,num2,emailSp;
+    ArrayAdapter<String> adapter,adapter2;
     RadioGroup  place_type;
-
+    DatabaseReference requests;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,15 +73,46 @@ public class add extends AppCompatActivity {
         nameform=findViewById(R.id.nameform);
         num=findViewById(R.id.num2);
         num2=findViewById(R.id.num);
+        emailSp=findViewById(R.id.Emailnum);
         String [] array=getResources().getStringArray(R.array.numbers);
         //new
+        final List<String> arrayOfEmails = new ArrayList<String>();
+        adapter2= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayOfEmails);
+        adapter2.add("لم يتم إختيار متجر");
+        requests = FirebaseDatabase.getInstance().getReference().child("requests");
+        requests.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String email = dataSnapshot.child("email").getValue(String.class);
+                adapter2.add(email);
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array);
-
         num.setAdapter(adapter);
         num2.setAdapter(adapter);
+        emailSp.setAdapter(adapter2);
 
-        email=findViewById(R.id.email);
+//        email=findViewById(R.id.email);
         baken=findViewById(R.id.baken);
         // type=findViewById(R.id.type);
 
@@ -125,12 +161,12 @@ public class add extends AppCompatActivity {
 
                 final String name=nameform.getText().toString().trim();
                 //String number=num.getText().toString().trim();
-                final String ownerEmail=email.getText().toString().trim();
+//                final String ownerEmail=email.getText().toString().trim();
                 final String baken_number=baken.getText().toString().trim();
                 // final String place_type=type.getText().toString().trim();
 
                 if(TextUtils.isEmpty(name)){
-                    Toast.makeText(add.this, "Please Enter Name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(add.this, "ادخل اسم المحل", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -139,13 +175,23 @@ public class add extends AppCompatActivity {
                     return;
                 }*/
 
-                if(TextUtils.isEmpty(ownerEmail)){
-                    Toast.makeText(add.this, "Please Enter ownerEmail", Toast.LENGTH_SHORT).show();
+                if(num.getSelectedItemPosition()==0){
+                    Toast.makeText(add.this, "اختر رقم المحل", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(num2.getSelectedItemPosition()==0){
+                    Toast.makeText(add.this, "اختر رقم الدور", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(emailSp.getSelectedItemPosition()==0){
+                    Toast.makeText(add.this, "اختر إيميل المالك", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(baken_number)){
-                    Toast.makeText(add.this, "Please Enter baken_number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(add.this, "ادخل رقم البيكن", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -155,7 +201,7 @@ public class add extends AppCompatActivity {
                 }*/
 
                 if(uri ==null){
-                    Toast.makeText(add.this, "Please Enter Select photo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(add.this, "ادخل صورة المحل", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 FirebaseDatabase.getInstance()
@@ -165,15 +211,15 @@ public class add extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
-                            Toast.makeText(add.this, "The Number Already Selected befor", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(add.this, "قد تم اختيار هذا الرقم لمحل آخر", Toast.LENGTH_SHORT).show();
                             return;
                         }else {
                             try {
                                 Log.d("MUTEE","getSelectedItem() :"+(String) num.getSelectedItem());
 
-                                uploadPhoto(name,Integer.parseInt((String) num.getSelectedItem()),ownerEmail,baken_number,uri);
+                                uploadPhoto(name,Integer.parseInt((String) num.getSelectedItem()),"",baken_number,uri);
                             }catch (Exception e){
-                                uploadPhoto(name,00000,ownerEmail,baken_number,uri);
+                                uploadPhoto(name,00000,"",baken_number,uri);
                             }
                         }
                     }
@@ -236,7 +282,7 @@ public class add extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(add.this, "Place Saved", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(add.this, "تم إضافة المحل بنجاح ", Toast.LENGTH_SHORT).show();
                             }else {
                                 Toast.makeText(add.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }

@@ -23,6 +23,8 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Pattern;
+
 public class ForgotPasswordActivity extends AppCompatActivity {
     private  FirebaseAuth lateinit;
     private EditText email,oPass,nPass;
@@ -48,13 +50,29 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
         reset = (Button) findViewById(R.id.reset_pass_btn);
 
+
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final int numDigits= getNumberDigits(nPass.getText().toString().trim());
+                final int numCharachters= getSpecialDigits(nPass.getText().toString().trim());
                 if (nPass.getText().toString().isEmpty() || oPass.getText().toString().isEmpty()) {
                     AlertDialog alertDialog = new AlertDialog.Builder(ForgotPasswordActivity.this)
                             .setTitle("تنبيه")
                             .setMessage("الرجاء إدخال الحقول المطلوبة")
+                            .setPositiveButton("موافق", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    //set what would happen when positive button is clicked
+                                    nPass.setText("");
+                                    oPass.setText("");
+                                }
+                            }).show();
+                }else if(nPass.getText().toString().toLowerCase().trim().equals(nPass.getText().toString()) || numCharachters == 0 || numDigits == 0 || numDigits == nPass.length()){
+                    Log.e("Numbers are",String.valueOf(numCharachters+numDigits));
+                    AlertDialog alertDialog = new AlertDialog.Builder(ForgotPasswordActivity.this)
+                            .setTitle("تنبيه")
+                            .setMessage("كلمة المرور الجديدة ضعيفة")
                             .setPositiveButton("موافق", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -149,5 +167,33 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     }
                 });
  */
+    }
+
+    public static int getNumberDigits(String inString){
+        if (isEmpty(inString)) {
+            return 0;
+        }
+        int numDigits= 0;
+        int length= inString.length();
+        for (int i = 0; i < length; i++) {
+            if (Character.isDigit(inString.charAt(i))) {
+                numDigits++;
+            }
+        }
+        return numDigits;
+    }
+
+    public static int getSpecialDigits(String inString){
+        int numDigits= 0;
+        Pattern regex = Pattern.compile("[$&+,:;=\\\\?@#|/'<>.^*()%!-]");
+        if (regex.matcher(inString).find()) {
+            numDigits++;
+            return numDigits;
+        }
+        return numDigits;
+    }
+
+    public static boolean isEmpty(String inString) {
+        return inString == null || inString.length() == 0;
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".singleBillInfo">
+    tools:context=".singleAdvertisementInfo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -218,6 +218,16 @@
 
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="250dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="الرجوع للخلف"
+            android:textSize="18sp"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

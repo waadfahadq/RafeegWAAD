@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -115,35 +116,19 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
             }
         });
         f1 = (FloatingActionButton) rootView.findViewById(R.id.floatingActionButton);
+        final View customLayout = getLayoutInflater().inflate(R.layout.custom_layout_dialog, null);
+        final EditText name = customLayout.findViewById(R.id.editText);
+//        final NumberPicker n1 = customLayout.findViewById(R.id.numberPicker);
         f1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle("أدخل معلومات المنتج");
-                final View customLayout = getLayoutInflater().inflate(R.layout.custom_layout_dialog, null);
                 alert.setView(customLayout);
                 alert.setPositiveButton("موافق", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // send data from the AlertDialog to the Activity
-                        EditText name = customLayout.findViewById(R.id.editText);
-                        NumberPicker n1 = customLayout.findViewById(R.id.numberPicker);
-                        if (name.getText().toString() == "إسم المنتج") {
-                                name.setError("الرجاء إدخال اسم المنتج");
-                        } else{
-                        model = new checklistModel(name.getText().toString(), String.valueOf(n1.getProgress()), false, "");
-                        mDatabase.child("checkList").child(user.getUid()).push().setValue(model, new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(DatabaseError databaseError,
-                                                   DatabaseReference databaseReference) {
-                                String uniqueKey = databaseReference.getKey();
-                                mDatabase.child("checkList").child(user.getUid()).child(uniqueKey).child("key").setValue(uniqueKey);
-                                model.setKey(uniqueKey);
-                            }
-                        });
-                        Log.e("chosen quantity", String.valueOf(n1.getProgress()));
                     }
-                }
                 });
                 alert.setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
                     @Override
@@ -151,9 +136,43 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                         dialog.cancel();
                     }
                 });
+                final View customLayout2 = getLayoutInflater().inflate(R.layout.custom_layout_dialog, null);
+                final EditText name2 = customLayout2.findViewById(R.id.editText);
                 // create and show the alert dialog
-                AlertDialog dialog = alert.create();
-                dialog.show();
+                if (v.getParent() == null) {
+                    alert.setView(customLayout2);
+                } else {
+                    v = null; //set it to null
+                    // now initialized yourView and its component again
+
+                    alert.setView(customLayout2);
+                }
+                final AlertDialog dialog1 = alert.create();
+                dialog1.show();
+                dialog1.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // send data from the AlertDialog to the Activity
+                            if (name2.getText().toString().equals("")) {
+                                name2.setError("الرجاء إدخال اسم المنتج");
+
+                            } else{
+                                model = new checklistModel(name2.getText().toString(), "", false, "");
+                                mDatabase.child("checkList").child(user.getUid()).push().setValue(model, new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(DatabaseError databaseError,
+                                                           DatabaseReference databaseReference) {
+                                        String uniqueKey = databaseReference.getKey();
+                                        mDatabase.child("checkList").child(user.getUid()).child(uniqueKey).child("key").setValue(uniqueKey);
+                                        model.setKey(uniqueKey);
+
+                                    }
+                                });
+//                                Log.e("chosen quantity", String.valueOf(n1.getProgress()));
+                                dialog1.dismiss();
+                            }
+                        }
+                    });
             }
         });
 
@@ -241,7 +260,7 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
             mActionMode.finish();
         if (mActionMode != null)
             mActionMode.setTitle(String.valueOf(adapter
-                    .getSelectedCount()) + " تم إختياره");
+                    .getSelectedCount()) + " تم إختيار");
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflator) {

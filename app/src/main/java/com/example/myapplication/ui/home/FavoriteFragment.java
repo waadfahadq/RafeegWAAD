@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.DetailsActivity;
+import com.example.myapplication.MainSear;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.StoreDeatilsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,12 +56,18 @@ public class FavoriteFragment extends Fragment {
     private FirebaseRecyclerOptions<LikedStores> options;
     private FirebaseRecyclerAdapter<LikedStores,MyViewHolder> adapter;
     private String user_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+    Button back ;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view=inflater.inflate(R.layout.fragment_favorite, container, false);
+        back=view.findViewById(R.id.back_btn2);
+
         fav_list=view.findViewById(R.id.fav_list);
         fav_list.setLayoutManager(new LinearLayoutManager(getContext()));
         query= FirebaseDatabase.getInstance().getReference("User").child(user_id).child("likes");
@@ -68,6 +77,7 @@ public class FavoriteFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull final MyViewHolder holder, int position, @NonNull final LikedStores likedStores) {
                 Log.d("MUTEE","onBindViewHolder");
+                storeinfo storeinfo;
                 FirebaseDatabase.getInstance().getReference().child("storeinfo").
                         child(likedStores.getStoreId()).
                         addValueEventListener(new ValueEventListener() {
@@ -79,21 +89,20 @@ public class FavoriteFragment extends Fragment {
                                 }else {
                                     Log.d("MUTEE","onDataChange");
                                     final storeinfo model1=dataSnapshot.getValue(storeinfo.class);
+
                                     holder.shopname.setText(model1.getName());
                                     holder.shopnum.setText(String.valueOf(model1.getNum()));
                                     if(isAdded())
                                         Glide.with(getContext()).load(model1.getImage()).into(holder.image);
-                                    holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                                    // this Mutee Update
+                                    holder.itemView.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            Intent intent=new Intent(getContext(), DetailsActivity.class);
+                                            Intent   intent=new Intent(getActivity(), StoreDeatilsActivity.class);
                                             intent.putExtra("store",model1);
-                                            intent.putExtra("key",model1.getId());
                                             startActivity(intent);
-
                                         }
                                     });
-
                                     holder.fav_img.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
@@ -105,6 +114,8 @@ public class FavoriteFragment extends Fragment {
                                                             if(dataSnapshot.exists()){
                                                                 FirebaseDatabase.getInstance().getReference("User").child(user_id).
                                                                         child("likes").child(model1.getId()).removeValue();
+                                                                Toast.makeText(getContext(), "تم إزالته من المفضلة ", Toast.LENGTH_SHORT).show();
+
                                                             }else {
 
                                                                 DatabaseReference push = FirebaseDatabase.getInstance().getReference("User").child(user_id).
@@ -115,8 +126,9 @@ public class FavoriteFragment extends Fragment {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                         if(task.isSuccessful()){
-                                                                            Toast.makeText(getContext(), "Liked", Toast.LENGTH_SHORT).show();
+                                                                            Toast.makeText(getContext(), "تم إضافته للمفضلة", Toast.LENGTH_SHORT).show();
                                                                         }
+
                                                                     }
                                                                 });
                                                             }
@@ -125,7 +137,7 @@ public class FavoriteFragment extends Fragment {
 
                                                         @Override
                                                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                                                            Toast.makeText(getContext(), databaseError.getMessage() +" 22", Toast.LENGTH_SHORT).show();
+                                                           // Toast.makeText(getContext(), databaseError.getMessage() +" 22", Toast.LENGTH_SHORT).show();
 
                                                         }
                                                     });
@@ -165,6 +177,10 @@ public class FavoriteFragment extends Fragment {
                             }
                         });
 
+                // this Mutee Update
+
+
+
             }
 
             @NonNull
@@ -175,6 +191,18 @@ public class FavoriteFragment extends Fragment {
             }
         };
         fav_list.setAdapter(adapter);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Intent n= new Intent(getActivity(), DashboardViewModel.class);
+                //startActivity(n);
+                getActivity().onBackPressed();
+
+
+
+
+            }
+        });
 
         return view;
     }
