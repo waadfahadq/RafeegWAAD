@@ -136,18 +136,28 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                         dialog.cancel();
                     }
                 });
+                final View customLayout2 = getLayoutInflater().inflate(R.layout.custom_layout_dialog, null);
+                final EditText name2 = customLayout2.findViewById(R.id.editText);
                 // create and show the alert dialog
+                if (v.getParent() == null) {
+                    alert.setView(customLayout2);
+                } else {
+                    v = null; //set it to null
+                    // now initialized yourView and its component again
+
+                    alert.setView(customLayout2);
+                }
                 final AlertDialog dialog1 = alert.create();
                 dialog1.show();
                 dialog1.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             // send data from the AlertDialog to the Activity
-                            if (name.getText().toString().equals("")) {
-                                name.setError("الرجاء إدخال اسم المنتج");
+                            if (name2.getText().toString().equals("")) {
+                                name2.setError("الرجاء إدخال اسم المنتج");
 
                             } else{
-                                model = new checklistModel(name.getText().toString(), "", false, "");
+                                model = new checklistModel(name2.getText().toString(), "", false, "");
                                 mDatabase.child("checkList").child(user.getUid()).push().setValue(model, new DatabaseReference.CompletionListener() {
                                     @Override
                                     public void onComplete(DatabaseError databaseError,
@@ -155,6 +165,7 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
                                         String uniqueKey = databaseReference.getKey();
                                         mDatabase.child("checkList").child(user.getUid()).child(uniqueKey).child("key").setValue(uniqueKey);
                                         model.setKey(uniqueKey);
+
                                     }
                                 });
 //                                Log.e("chosen quantity", String.valueOf(n1.getProgress()));
