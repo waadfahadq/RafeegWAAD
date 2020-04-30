@@ -36,7 +36,11 @@
         <activity android:name=".billingList_back" />
         <activity android:name=".singleBillInfo" />
         <activity android:name=".fullScreen" />
-        <activity android:name=".advertisement_list_back" />
+        <activity android:name=".Map">
+
+
+
+        </activity>
         <activity android:name=".singleAdvertisementInfo" />
         <activity android:name=".editAd" />
         <activity android:name=".ForApproval" />
