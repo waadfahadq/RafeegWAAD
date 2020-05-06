@@ -217,9 +217,9 @@ public class add extends AppCompatActivity {
                             try {
                                 Log.d("MUTEE","getSelectedItem() :"+(String) num.getSelectedItem());
 
-                                uploadPhoto(name,Integer.parseInt((String) num.getSelectedItem()),"",baken_number,uri);
+                                uploadPhoto(name,Integer.parseInt((String) num.getSelectedItem()),String.valueOf(emailSp.getSelectedItemPosition()),baken_number,uri);
                             }catch (Exception e){
-                                uploadPhoto(name,00000,"",baken_number,uri);
+                                uploadPhoto(name,00000,String.valueOf(emailSp.getSelectedItemPosition()),baken_number,uri);
                             }
                         }
                     }
