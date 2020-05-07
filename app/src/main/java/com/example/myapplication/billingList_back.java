@@ -56,6 +56,7 @@ public class billingList_back extends AppCompatActivity {
     String uid;
     boolean haveBill = false ;
     String dayOfWeek ;
+
     //Datebase
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final DatabaseReference myRef = database.getReference("Bill Information");

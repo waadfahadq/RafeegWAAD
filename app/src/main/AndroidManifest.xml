@@ -27,7 +27,12 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".Signup" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".admin_portal.MainActivityAdmin" />
+        <activity android:name=".admin_portal.MainActivityAdmin">
+
+
+
+        </activity>
+
         <activity android:name=".StorwsList" />
         <activity android:name=".ui.dashboard.ForgotPasswordActivity" />
         <activity android:name=".ui.dashboard.DeleteAccountAcivity" />
@@ -36,14 +41,11 @@
         <activity android:name=".billingList_back" />
         <activity android:name=".singleBillInfo" />
         <activity android:name=".fullScreen" />
-        <activity android:name=".Map">
-
-
-
-        </activity>
+        <activity android:name=".Map"></activity>
         <activity android:name=".singleAdvertisementInfo" />
         <activity android:name=".editAd" />
         <activity android:name=".ForApproval" />
+        <activity android:name=".StoreDeatilsActivity"></activity>
     </application>
 
 </manifest>

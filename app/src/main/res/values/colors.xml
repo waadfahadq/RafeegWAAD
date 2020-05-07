@@ -5,6 +5,16 @@
     <color name="colorAccent">#5F94D4</color>
     <color name="search_active">#4E7FCA</color>
 
+    <!--colros for card-->
+    <color name="whiteCardColor">#fff</color>
+    <color name="bg">#08747373</color>
+    <!--    <color name="white">#996464</color>-->
+
+    <!--colors for modern ui-->
+    <color name="whiteTextColor">#FFFFFF</color>
+    <color name="primaryTextColor">#5F94D4</color>
+    <color name="loginBkColor">#f0f0f0</color>
+
 
     <color name="colorTextPrimary">#ffffff</color>
     <color name="colorTextSecondary">#3E9C1919</color>

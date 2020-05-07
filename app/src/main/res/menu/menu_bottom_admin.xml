@@ -14,8 +14,8 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/ADV_tab"
+        android:id="@+id/uploadMap"
         android:enabled="true"
-        android:title="الاعلانات"
+        android:title="الخريطة"
         app:showAsAction="ifRoom"/>
 </menu>

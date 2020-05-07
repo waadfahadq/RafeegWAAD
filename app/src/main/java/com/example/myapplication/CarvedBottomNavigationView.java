@@ -17,7 +17,7 @@ public class CarvedBottomNavigationView extends BottomNavigationView   {
     private Paint mPaint;
 
     /** the CURVE_CIRCLE_RADIUS represent the radius of the fab button */
-    public final int CURVE_CIRCLE_RADIUS = 90;
+    public final int CURVE_CIRCLE_RADIUS = 60;
     // the coordinates of the first curve
     public Point mFirstCurveStartPoint = new Point();
     public Point mFirstCurveEndPoint = new Point();

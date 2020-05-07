@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/loginCard"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="@dimen/loginViewsMargin"
+    android:background="@color/bg">
+
+    <LinearLayout
+        style="@style/linearParent"
+        android:layout_gravity="center"
+        android:padding="@dimen/loginViewsMargin"
+        android:background="@color/bg">
+
+        <TextView
+            style="@style/headerTextPrimary"
+            android:text="إنشاء حساب جديد"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/modifiedEditText"
+                android:backgroundTint="@color/colorPrimary"
+                android:drawableStart="@drawable/ic_perm_identity_black_24dp"
+                android:hint="اسم المستخدم"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+            <EditText
+                android:id="@+id/emailregister"
+                style="@style/modifiedEditText"
+                android:backgroundTint="@color/colorPrimary"
+                android:drawableStart="@drawable/ic_email_black_24dp"
+                android:hint="البريد الإلكتروني"
+                 />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            style="@style/parent"-->
+<!--            android:layout_marginTop="@dimen/signup_text_margin_top">-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/email"-->
+<!--                style="@style/modifiedEditText"-->
+<!--                android:backgroundTint="@color/colorPrimary"-->
+<!--                android:drawableStart="@drawable/ic_mail_outline_black_24dp"-->
+<!--                android:hint="@string/login_email_hint"-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                android:maxLength="28"-->
+<!--                android:maxLines="1" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/modifiedEditText"
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="كلمة المرور"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:drawableStart="@drawable/ic_vpn_key_black_24dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/register_button"
+            style="@style/loginButton"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="تسجيل" />
+
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

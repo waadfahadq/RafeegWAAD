@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class account extends Fragment {
-    Button b1,b2;
+    Button b1;
+    ImageView back ;
     private FirebaseUser user;
     EditText em;
 
@@ -39,7 +41,7 @@ public class account extends Fragment {
 //        setHasOptionsMenu(true);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("الملف الشخصي");
         b1 = rootView.findViewById(R.id.button);
-        b2 = rootView.findViewById(R.id.button2);
+        back = rootView.findViewById(R.id.back_btnProfile);
         em = rootView.findViewById(R.id.email_edit_text);
         user = FirebaseAuth.getInstance().getCurrentUser();
         em.setText(user.getEmail());
@@ -50,16 +52,16 @@ public class account extends Fragment {
                 startActivity(pass);
             }
         });
-        b2.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("حسابي");
+//
                 getActivity().onBackPressed();
             }
         });
         return rootView;
     }
+
 
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {

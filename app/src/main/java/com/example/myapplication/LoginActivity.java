@@ -77,15 +77,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
-        Login = (Button) findViewById(R.id.login_btn);
-        UserName = (EditText) findViewById(R.id.username_login);
-        Password = (EditText) findViewById(R.id.password_login);
+        Login = (Button) findViewById(R.id.loginButton);
+        UserName = (EditText) findViewById(R.id.editTextID);
+        Password = (EditText) findViewById(R.id.editTextPassword);
         Login.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
 
 
-        createACC = findViewById(R.id.createACC);
+        createACC = findViewById(R.id.signup_txt);
         createACC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        newStore = findViewById(R.id.partner);
+        newStore = findViewById(R.id.Shop_ownerٍSignup_txt);
         newStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        forgetPass = findViewById(R.id.forget);
+        forgetPass = findViewById(R.id.forgot_password_tv);
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.login_btn:
+            case R.id.loginButton:
                 final String EMAIL = UserName.getText().toString().trim();
                 final String PASS = Password.getText().toString().trim();
                 checkStoreExist(UserName.getText().toString().trim(), new MyCallback() {

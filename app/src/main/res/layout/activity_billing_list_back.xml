@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".billingList_back"
     android:orientation="vertical"
+    android:background="@drawable/new_bg"
 
     tools:ignore="MissingDefaultResource">
 

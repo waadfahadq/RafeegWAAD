@@ -36,7 +36,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     FirebaseDatabase database;
     FirebaseAuth firebaseAuth;
     DatabaseReference reference;
-    private ImageView logout,delete;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,23 +44,14 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment__dashboard, container, false);
 
-        logout = root.findViewById(R.id.logout);
-        logout.setOnClickListener(this);
 
-        delete = root.findViewById(R.id.delete_account);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), DeleteAccountAcivity.class));
-            }
-        });
 
 
         t1= (TextView) root.findViewById(R.id.textView);
         t1.setText(MainActivity.username);
 
         ArrayList<DashboardViewModel> Categories2 = new ArrayList<DashboardViewModel>();
-        Categories2.add(new DashboardViewModel("الملف الشخصي", R.drawable.user2));
+        Categories2.add(new DashboardViewModel("معلومات الحساب", R.drawable.user2));
         Categories2.add(new DashboardViewModel("الفواتير", R.drawable.bill));
         Categories2.add(new DashboardViewModel("الأماكن المفضلة", R.drawable.favlist));
         Categories2.add(new DashboardViewModel("قائمة التسوق", R.drawable.chklist));
@@ -121,8 +111,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
 
-        firebaseAuth.getInstance().signOut();
-        startActivity(new Intent(this.getContext(), LoginActivity.class));
+
 
 
     }

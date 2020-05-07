@@ -82,7 +82,7 @@ public class MainActivityAdmin extends AppCompatActivity implements BottomNaviga
 
 
 
-            case R.id.ADV_tab:
+            case R.id.uploadMap:
                 tet();
                 mlinId.setX(mView.mFirstCurveControlPoint1.x );
                 heartVector.setVisibility(View.GONE);

@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.ui.StoreDeatilsActivity;
+import com.example.myapplication.StoreDeatilsActivity;
 import com.example.myapplication.ui.home.LikedStores;
 import com.example.myapplication.ui.home.storeinfo;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

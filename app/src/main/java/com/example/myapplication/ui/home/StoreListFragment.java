@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.myapplication.DetailsActivity;
 import com.example.myapplication.MainSear;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.StoreDeatilsActivity;
+import com.example.myapplication.StoreDeatilsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;

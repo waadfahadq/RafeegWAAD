@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +7,9 @@
     android:layout_height="wrap_content"
     android:background="@drawable/custome"
     android:layout_marginBottom="4dp"
+    android:layout_gravity="center_horizontal"
     android:elevation="20dp"
+    android:layout_margin="5dp"
     android:orientation="horizontal">
 
     <ImageView
@@ -25,6 +25,7 @@
     <LinearLayout
         android:layout_weight="1"
         android:id="@+id/line5"
+        android:layout_gravity="right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -33,34 +34,62 @@
             android:id="@+id/shopname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
+            android:layout_gravity="right"
             android:layout_toRightOf="@+id/images"
+            android:layout_marginBottom="8dp"
             android:text="اسم المحل"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="15sp" />
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/shopnum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_gravity="right"
             android:layout_toRightOf="@+id/images"
             android:text="رقم المحل"
-            android:gravity="center_horizontal"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="15sp" />
+            android:textStyle="normal"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
 
-        <ImageView
-            android:layout_marginTop="5dp"
-            android:id="@+id/fav_img"
-            android:src="@drawable/ic_fav_off"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="40dp"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="right"
+    android:gravity="right"
+    android:layout_marginTop="10dp">
 
-            android:layout_height="40dp">
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:id="@+id/fav_img"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_fav_off"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        </ImageView>
+    </ImageView>
+
+    <TextView
+        android:id="@+id/addToFavo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="0dp"
+        android:layout_toRightOf="@+id/images"
+        android:gravity="center_horizontal"
+        android:text="إضافة إلى المفضلة ؟"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15sp"
+        android:textStyle="normal" />
+
+
+</LinearLayout>
+
 
         <!--<TextView
                     android:layout_marginStart="20dp"

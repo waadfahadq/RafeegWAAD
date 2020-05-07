@@ -5,35 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/profilebg"
+    android:background="@drawable/new_bg"
     >
-    <ImageView
-        android:id="@+id/logout"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:gravity="right"
-        android:background="@drawable/ic_power_blue"
-        tools:ignore="MissingConstraints" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lv"
-        android:layout_weight="1"
-        android:layout_marginTop="10dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-
-        />
-
-    <Button
-        android:id="@+id/addstore"
-        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:orientation="horizontal">
 
-        android:gravity="center"
-        android:background="@color/colorPrimary"
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="right"
+            android:background="@drawable/ic_power_blue"
+            tools:ignore="MissingConstraints" />
 
-        android:text="إضافة محل" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="تسجيل خروج "
+            android:textSize="15dp"
+            android:textColor="@color/RED">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardView2"
+        android:layout_width="350dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custome"
+        android:elevation="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/addstore"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_bg"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="إضافة محل"
+                android:textColor="@android:color/white"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lv"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                android:layout_marginBottom="15dp"/>
+
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

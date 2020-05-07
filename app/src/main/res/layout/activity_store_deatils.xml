@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ui.StoreDeatilsActivity">
+    android:background="@drawable/new_bg"
+    tools:context=".StoreDeatilsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -33,27 +34,32 @@
     <ImageView
         android:scaleType="center"
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_gravity="center"
+        android:layout_width="384dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="10dp">
 
     </ImageView>
 
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="30dp"
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="10dp">
 
 
                 <TextView
@@ -64,7 +70,7 @@
                     android:layout_margin="8dp"
                     android:gravity="right"
                     android:text="ايميل المحل :"
-                    android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -75,27 +81,27 @@
                 </TextView>
 
                 <TextView
-                    android:textSize="20sp"
-                    android:layout_margin="8dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
+                    android:layout_margin="8dp"
+                    android:text="محل"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView13"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="10dp">
 
 
                 <TextView
@@ -106,7 +112,7 @@
                     android:layout_margin="8dp"
                     android:gravity="right"
                     android:text="ساعات العمل :"
-                    android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -117,26 +123,27 @@
                 </TextView>
 
                 <TextView
-                    android:textSize="20sp"
-                    android:layout_margin="8dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/work_hours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
                     android:text="09:00 AM - 09:00 PM"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView19"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:padding="10dp">
 
 
                 <TextView
@@ -147,7 +154,7 @@
                     android:layout_margin="8dp"
                     android:gravity="right"
                     android:text=" الهاتف :"
-                    android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -158,35 +165,38 @@
                 </TextView>
 
                 <TextView
-                    android:textSize="20sp"
-                    android:layout_margin="8dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
+                    android:layout_margin="8dp"
+                    android:text="0558663317"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView20"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <LinearLayout
-                android:onClick="showLoaction"
-                android:padding="8dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bttn"
+                android:id="@+id/go"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/bttn"
+                android:onClick="showLoaction"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
                 <ImageView
-                    android:layout_weight="1"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_place_black_24dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_directions_walk_black_24dp">
 
                 </ImageView>
 
@@ -198,7 +208,6 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bttn"
                     android:padding="8dp"
                     android:text="اذهب للمحل"
 
@@ -209,10 +218,7 @@
                 </TextView>
 
 
-
             </LinearLayout>
-
-
 
 
         </LinearLayout>

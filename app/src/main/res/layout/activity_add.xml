@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/profilebg"
+    android:background="@drawable/new_bg"
     tools:context=".admin_portal.ui.ProfileFragment.add">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar900"
@@ -25,10 +25,9 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="65dp"
-
             android:layout_marginRight="30dp"
             app:cardCornerRadius="8dp">
 
@@ -41,8 +40,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
-
+                    android:padding="30dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -50,7 +48,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="100dp"
-                        android:layout_marginTop="10dp"
                         android:text="اسم المحل"
 
                         android:textColor="@color/colorPrimary">
@@ -252,7 +249,8 @@
                         android:id="@+id/reema"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/button_bg"
+                        android:textColor="@android:color/white"
 
                         android:text="حفظ" />
 

@@ -52,6 +52,7 @@ public class StoresFragment extends Fragment {
 
     Button addStore;
     RecyclerView recyclerView;
+
     //String userId= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     DatabaseReference databaseReference;
@@ -182,9 +183,10 @@ public class StoresFragment extends Fragment {
 
     //1
     public  class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView shopname,shopnum;
+        TextView shopname,shopnum, addToFavo;
         public LinearLayout linearLayout;
         ImageView image,fav_img;
+
 
 
 
@@ -196,6 +198,8 @@ public class StoresFragment extends Fragment {
             fav_img=(ImageView) itemView.findViewById(R.id.fav_img);
             linearLayout=(LinearLayout)itemView.findViewById(R.id.line5);
             fav_img.setVisibility(View.GONE);
+            addToFavo =(TextView)itemView.findViewById(R.id.addToFavo);
+            addToFavo.setVisibility(View.GONE);
         }
     }
     private  void  deleteStore(final String key, final String email){

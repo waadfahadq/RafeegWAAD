@@ -16,7 +16,7 @@
     <item
         android:id="@+id/ADV_tab"
         android:enabled="true"
-        android:title="الاعلانات"
+        android:title="الإعدادات"
         app:showAsAction="ifRoom"/>
 
 </menu>

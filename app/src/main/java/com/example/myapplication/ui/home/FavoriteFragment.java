@@ -22,7 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.myapplication.DetailsActivity;
 import com.example.myapplication.MainSear;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.StoreDeatilsActivity;
+import com.example.myapplication.StoreDeatilsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,7 +56,7 @@ public class FavoriteFragment extends Fragment {
     private FirebaseRecyclerOptions<LikedStores> options;
     private FirebaseRecyclerAdapter<LikedStores,MyViewHolder> adapter;
     private String user_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-    Button back ;
+    ImageView back ;
 
 
 

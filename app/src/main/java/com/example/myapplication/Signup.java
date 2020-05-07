@@ -78,22 +78,12 @@ public class Signup extends AppCompatActivity implements  View.OnClickListener {
 
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Name = findViewById(R.id.name);
+        password = findViewById(R.id.password);
+        email = findViewById(R.id.emailregister);
 
-        setTitle("إنشاء حساب");
-
-        toolbar.setTitleTextColor(Color.WHITE);
-
-
-        Name = findViewById(R.id.Username_register);
-        password = findViewById(R.id.Password_register);
-        email = findViewById(R.id.Email_register);
-
-        register = findViewById(R.id.register_btn);
+        register = findViewById(R.id.register_button);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

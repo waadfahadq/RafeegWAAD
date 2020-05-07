@@ -75,6 +75,7 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
     View rootView;
     private DatabaseReference mDatabase;
     private ConstraintLayout constraintLayout;
+    ImageView back;
 
 // ...
     public checklist() {
@@ -90,7 +91,14 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
 //        setHasOptionsMenu(true);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("قائمة التسوق");
 
-
+        back = rootView.findViewById(R.id.back_btnProfile);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//
+                getActivity().onBackPressed();
+            }
+        });
 
         listViewPosts = (SwipeMenuListView) rootView.findViewById(R.id.listViewPosts);
         constraintLayout = rootView.findViewById(R.id.card_view3);
@@ -123,7 +131,7 @@ public class checklist extends Fragment implements AdapterView.OnItemClickListen
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                alert.setTitle("أدخل معلومات المنتج");
+                alert.setTitle("أدخل معلومات المنتج :                   ");
                 alert.setView(customLayout);
                 alert.setPositiveButton("موافق", new DialogInterface.OnClickListener() {
                     @Override

@@ -1,122 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginnewbg">
+    style="@style/loginParent"
+    android:background="@drawable/waadbgt">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_gravity="center_horizontal"
-        android:text="تسجيل الدخول"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@android:color/white"
-        android:textStyle="normal"
-        android:textSize="60dp"></TextView>
+    <ScrollView
+        style="@style/parent">
+
+        <RelativeLayout
+            style="@style/parent">
 
 
-    <EditText
-        android:id="@+id/username_login"
-        android:layout_marginTop="140dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="300dp"
-        android:hint="البريد الإلكتروني"
-        android:fontFamily="sans-serif-light"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:layout_height="40dp"></EditText>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
 
-    <EditText
-        android:id="@+id/password_login"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="300dp"
-        android:hint="كلمة المرور"
-        android:inputType="textPassword"
-        android:fontFamily="sans-serif-light"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:layout_height="40dp"></EditText>
+                <LinearLayout
+                    style="@style/parent"
+                    android:orientation="vertical"
+                    android:layout_weight="3">
 
-    <TextView
-        android:id="@+id/forget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="60dp"
-        android:text="هل نسيت كلمة المرور ؟"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@android:color/holo_red_light"
-        android:textStyle="bold"
-        android:textSize="10dp"></TextView>
 
-    <Button
-        android:id="@+id/login_btn"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/colorAccent"
-        android:textColor="@android:color/white"
-        android:text="تسجيل الدخول"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-light"
-        android:textCursorDrawable="@android:color/white"
-        android:layout_gravity="center_horizontal">
-    </Button>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/guest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="تسجيل الدخول كزائر"
-            android:textColor="@android:color/white"
-            android:fontFamily="sans-serif-light"
-            android:textSize="12dp"></TextView>
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:text="|"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-light"
-            android:textSize="12dp"></TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:layout_marginTop="110dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp">
 
-        <TextView
-            android:id="@+id/createACC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:text="إنشاء حساب"
-            android:textColor="@android:color/white"
-            android:fontFamily="sans-serif-light"
-            android:textSize="12dp"></TextView>
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/partner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/Partner"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:textSize="10dp"></TextView>
+                <!--                <TextView-->
+                <!--                    style="@style/headerText"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:layout_marginTop="40dp"/>-->
+                <include layout="@layout/layout_login" />
 
-</LinearLayout>
+            </LinearLayout>
+            <!--            <ImageView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_alignParentLeft="true"-->
+            <!--                android:layout_alignParentTop="true"-->
+            <!--                android:layout_marginTop="30dp"-->
+            <!--                android:layout_marginLeft="10dp"-->
+            <!--                android:src="@android:drawable/ic_menu_close_clear_cancel" />-->
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

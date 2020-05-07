@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,13 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.MainSear;
+import com.example.myapplication.Map;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.home.storeinfo;
 
 public class StoreDeatilsActivity extends AppCompatActivity {
+    private LinearLayout goBtn;
     private Toolbar toolbar;
     private TextView title;
     private TextView work_hours;
@@ -30,6 +34,15 @@ public class StoreDeatilsActivity extends AppCompatActivity {
         title=findViewById(R.id.title);
         work_hours=findViewById(R.id.work_hours);
         place=findViewById(R.id.place);
+        goBtn = findViewById(R.id.go);
+        goBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Map.class);
+                //intent.putExtra("title" , secList.get(position).getName());
+                startActivity(intent);
+            }
+        });
         imageView=findViewById(R.id.imageView);
         phone=findViewById(R.id.phone);
         //rate=findViewById(R.id.rating);

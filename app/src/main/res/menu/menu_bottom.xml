@@ -18,7 +18,7 @@
     <item
         android:id="@+id/Noti_tab"
         android:enabled="true"
-        android:title="الإشعارات"
+        android:title="الإعدادات"
         app:showAsAction="ifRoom"/>
 
 
